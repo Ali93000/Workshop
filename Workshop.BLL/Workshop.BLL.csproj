@@ -43,15 +43,19 @@
   <ItemGroup>
     <Compile Include="Customer\Enquiry\CustomerEnquiryFunc.cs" />
     <Compile Include="Customer\Enquiry\ICustomerEnquiryFunc.cs" />
+    <Compile Include="Customer\Operational\CustomerOperationalFunc.cs" />
+    <Compile Include="Customer\Operational\ICustomerOperationalFunc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Customer\Operational\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Workshop.DAL\Workshop.DAL.csproj">
       <Project>{FC15E945-F724-4E35-B6DF-30EAE079F4E5}</Project>
       <Name>Workshop.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Workshop.Entities\Workshop.Entities.csproj">
+      <Project>{6E21EC4D-221D-472F-B8B1-C7C8D6F7EA9D}</Project>
+      <Name>Workshop.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

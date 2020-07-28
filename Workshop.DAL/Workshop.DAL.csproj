@@ -71,6 +71,8 @@
     <Compile Include="Domain\W_D_Customer.cs">
       <DependentUpon>WorkshopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Mapping\Request\ICustomerReqMappingRequest.cs" />
+    <Compile Include="Mapping\Response\ICustomerMappingResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Implementation\CustomerRepository.cs" />
     <Compile Include="Repository\Implementation\GenericRepository.cs" />
@@ -111,6 +113,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -9,8 +9,13 @@ using Unity;
 using Unity.WebApi;
 using Workshop.Api.Mapping.AutomapperConfiguration.Implementation;
 using Workshop.Api.Mapping.AutomapperConfiguration.Interfaces;
+using Workshop.Api.Mapping.Request;
+using Workshop.Api.Mapping.Response;
 using Workshop.Api.Validation.Configuration;
 using Workshop.BLL.Customer.Enquiry;
+using Workshop.BLL.Customer.Operational;
+using Workshop.DAL.Mapping.Request;
+using Workshop.DAL.Mapping.Response;
 using Workshop.DAL.Repository.Implementation;
 using Workshop.DAL.Repository.Intefaces;
 using Workshop.DAL.Repository.UnitOfWork;
@@ -43,6 +48,10 @@ namespace Workshop.Api.IOC
             await Task.Run(() =>
             {
                 container.RegisterType<ICustomerMapperConfiguration, CustomerMapperConfiguration>();
+                // Map Request
+                container.RegisterType<ICustomerReqMappingRequest, CustomerReqMappingRequest>();
+                // Map Response
+                container.RegisterType<ICustomerMappingResponse, CustomerMappingResponse>();
             });
         }
 
@@ -51,6 +60,8 @@ namespace Workshop.Api.IOC
             await Task.Run(() =>
             {
                 container.RegisterType<ICustomerEnquiryFunc, CustomerEnquiryFunc>();
+                container.RegisterType<ICustomerOperationalFunc, CustomerOperationalFunc>();
+
             });
         }
 

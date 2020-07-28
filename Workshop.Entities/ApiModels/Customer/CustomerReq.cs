@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Workshop.Entities.ApiModels;
 
-namespace Workshop.Entities.DTO
+namespace Workshop.Entities.ApiModels.Customer
 {
-    public class CustomerDTO
+    public class CustomerReq
     {
         public int Id { get; set; }
         public string CustomerCode { get; set; }
@@ -17,11 +16,5 @@ namespace Workshop.Entities.DTO
         public string CustomerAddress { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string Remarks { get; set; }
-        public string CreatedBy { get; set; }
-        public Nullable<System.DateTime> CreatedAt { get; set; }
-        public string UpdatedBy { get; set; }
-        public Nullable<System.DateTime> UpdatedAt { get; set; }
-        public Nullable<int> CompCode { get; set; }
-        public Nullable<int> BranchCode { get; set; }
     }
 }

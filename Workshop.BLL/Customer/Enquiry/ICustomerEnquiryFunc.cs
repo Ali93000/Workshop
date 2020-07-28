@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Workshop.DAL.Domain;
+using Workshop.Entities.DTO;
 
 namespace Workshop.BLL.Customer.Enquiry
 {
     public interface ICustomerEnquiryFunc
     {
-        IEnumerable<W_D_Customer> GetAllCustomers();
+        IEnumerable<CustomerDTO> GetAllCustomers();
+        CustomerDTO GetCustomerById(int id);
     }
 }
