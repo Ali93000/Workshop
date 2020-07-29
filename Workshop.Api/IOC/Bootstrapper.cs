@@ -70,7 +70,7 @@ namespace Workshop.Api.IOC
             await Task.Run(() =>
             {
                 container.RegisterType<IUnitOfWork, UnitOfWork>();
-                container.RegisterType<ICustomerRepository, ICustomerRepository>();
+                container.RegisterType<ICustomerRepository, CustomerRepository>();
             });
         }
 
