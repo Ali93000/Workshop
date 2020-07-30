@@ -16,7 +16,8 @@ namespace Workshop.DAL.Domain
     {
         public int Id { get; set; }
         public string EmpCode { get; set; }
-        public string EmpName { get; set; }
+        public string EmpNameAr { get; set; }
+        public string EmpNameEn { get; set; }
         public string Mobile1 { get; set; }
         public string Mobile2 { get; set; }
         public Nullable<bool> IsActive { get; set; }

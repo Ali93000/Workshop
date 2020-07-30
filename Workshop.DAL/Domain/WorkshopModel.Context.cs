@@ -18,7 +18,7 @@ namespace Workshop.DAL.Domain
         public WorkshopDBEntities()
             : base("name=WorkshopDBEntities")
         {
-            var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+            var inSureDBIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -26,6 +26,7 @@ namespace Workshop.DAL.Domain
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<W_D_Category> W_D_Category { get; set; }
         public virtual DbSet<W_D_Customer> W_D_Customer { get; set; }
         public virtual DbSet<W_D_Employee> W_D_Employee { get; set; }
         public virtual DbSet<W_D_Vendor> W_D_Vendor { get; set; }

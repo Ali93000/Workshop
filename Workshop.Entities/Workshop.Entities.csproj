@@ -41,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiModels\Category\CategoryReq.cs" />
     <Compile Include="ApiModels\Customer\CustomerReq.cs" />
     <Compile Include="ApiModels\Employee\EmployeeReq.cs" />
     <Compile Include="ApiModels\GenericResponse.cs" />
+    <Compile Include="DTO\Category\CategoryDTO.cs" />
     <Compile Include="DTO\Customer\CustomerDTO.cs" />
     <Compile Include="DTO\Employee\EmployeeDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

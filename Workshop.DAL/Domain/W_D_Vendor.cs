@@ -16,7 +16,8 @@ namespace Workshop.DAL.Domain
     {
         public int Id { get; set; }
         public string VendorCode { get; set; }
-        public string VerndorName { get; set; }
+        public string VerndorNameAr { get; set; }
+        public string VerndorNameEn { get; set; }
         public string ResponsibleName { get; set; }
         public string Mobile1 { get; set; }
         public string Mobile2 { get; set; }

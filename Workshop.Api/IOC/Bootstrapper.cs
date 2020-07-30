@@ -7,11 +7,14 @@ using System.Web.Http;
 using System.Web.Http.Validation;
 using Unity;
 using Unity.WebApi;
+using Workshop.Api.JWTImplementation;
 using Workshop.Api.Mapping.AutomapperConfiguration.Implementation;
 using Workshop.Api.Mapping.AutomapperConfiguration.Interfaces;
 using Workshop.Api.Mapping.Request;
 using Workshop.Api.Mapping.Response;
 using Workshop.Api.Validation.Configuration;
+using Workshop.BLL.Category.Enquiry;
+using Workshop.BLL.Category.Operational;
 using Workshop.BLL.Customer.Enquiry;
 using Workshop.BLL.Customer.Operational;
 using Workshop.BLL.Employee.Enquiry;
@@ -29,6 +32,8 @@ namespace Workshop.Api.IOC
         public static void Initialize()
         {
             var container = new UnityContainer();
+            // JWT Register
+            container.RegisterType<ITokenManager, TokenManager>();
             RegisterDependencies(container);
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
@@ -56,6 +61,11 @@ namespace Workshop.Api.IOC
                 // Employee
                 container.RegisterType<IEmployeeMapperConfiguration, EmployeeMapperConfiguration>();
                 container.RegisterType<IEmployeeMappingResponse, EmployeeMappingResponse>();
+                container.RegisterType<IEmployeeReqMappingRequest, EmployeeReqMappingRequest>();
+                // Category
+                container.RegisterType<ICategoryMapperConfiguration, CategoryMapperConfiguration>();
+                container.RegisterType<ICategoryReqMappingRequest, CategoryReqMappingRequest>();
+                container.RegisterType<ICategoryMappingResponse, CategoryMappingResponse>();
             });
         }
 
@@ -69,6 +79,9 @@ namespace Workshop.Api.IOC
                 // Employee
                 container.RegisterType<IEmployeeEnquiryFunc, EmployeeEnquiryFunc>();
                 container.RegisterType<IEmployeeOperationaFunc, EmployeeOperationaFunc>();
+                // Category
+                container.RegisterType<ICategoryEnquiryFunc, CategoryEnquiryFunc>();
+                container.RegisterType<ICategoryOperationalFunc, CategoryOperationalFunc>();
 
             });
         }
@@ -79,6 +92,7 @@ namespace Workshop.Api.IOC
             {
                 container.RegisterType<IUnitOfWork, UnitOfWork>();
                 container.RegisterType<ICustomerRepository, CustomerRepository>();
+                container.RegisterType<ICategoryRepository, CategoryRepository>();
             });
         }
 

@@ -18,8 +18,10 @@ namespace Workshop.Api.Validation.ModelValidator
                 .NotEmpty().WithMessage("{PropertyName} Is Required");
             RuleFor(x => x.CustomerCode)
                 .NotEmpty().WithMessage("CustomerCode Is Required");
-            RuleFor(x => x.CustomerName)
-                .NotEmpty().WithMessage("CustomerName Is Required");
+            RuleFor(x => x.CustomerNameAr)
+                .NotEmpty().WithMessage("{PropertyName} Is Required");
+            RuleFor(x => x.CustomerNameEn)
+                .NotEmpty().WithMessage("{PropertyName} Is Required");
             RuleFor(x => x.Mobil1)
                 .NotEmpty().WithMessage("{PropertyName} Is Required");
             RuleFor(x => x.Mobil2)

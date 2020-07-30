@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Workshop.DAL.Domain;
+using Workshop.DAL.Mapping.Request;
 using Workshop.DAL.Mapping.Response;
 using Workshop.DAL.Repository.UnitOfWork;
 using Workshop.Entities.ApiModels.Employee;
@@ -15,15 +16,17 @@ namespace Workshop.BLL.Employee.Operational
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IEmployeeMappingResponse _employeeMappingResponse;
-        public EmployeeOperationaFunc(IUnitOfWork unitOfWork, IEmployeeMappingResponse employeeMappingResponse)
+        private readonly IEmployeeReqMappingRequest _employeeReqMappingRequest;
+        public EmployeeOperationaFunc(IUnitOfWork unitOfWork, IEmployeeMappingResponse employeeMappingResponse, IEmployeeReqMappingRequest employeeReqMappingRequest)
         {
             this._unitOfWork = unitOfWork;
             this._employeeMappingResponse = employeeMappingResponse;
+            this._employeeReqMappingRequest = employeeReqMappingRequest;
         }
         public int CreateEmployee(EmployeeReq employeeReq)
         {
             // Map Model
-            var empDBModel = _employeeMappingResponse.MapEmployeeReqToDBModel(employeeReq);
+            var empDBModel = _employeeReqMappingRequest.MapEmployeeReqToDBModel(employeeReq);
             // Add Object To Database
             _unitOfWork.EmployeeRepository.Add(empDBModel);
             _unitOfWork.SaveChanges();
@@ -39,7 +42,7 @@ namespace Workshop.BLL.Employee.Operational
         public void UpdateEmployee(EmployeeReq employeeReq)
         {
             // Map Model
-            var emoDbModel = _employeeMappingResponse.MapEmployeeReqToDBModel(employeeReq);
+            var emoDbModel = _employeeReqMappingRequest.MapEmployeeReqToDBModel(employeeReq);
             // Update Employee Info
             _unitOfWork.EmployeeRepository.Update(emoDbModel);
             _unitOfWork.SaveChanges();

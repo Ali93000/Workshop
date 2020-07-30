@@ -68,6 +68,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WorkshopModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Domain\W_D_Category.cs">
+      <DependentUpon>WorkshopModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain\W_D_Customer.cs">
       <DependentUpon>WorkshopModel.tt</DependentUpon>
     </Compile>
@@ -77,13 +80,18 @@
     <Compile Include="Domain\W_D_Vendor.cs">
       <DependentUpon>WorkshopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Mapping\Request\ICategoryReqMappingRequest.cs" />
     <Compile Include="Mapping\Request\ICustomerReqMappingRequest.cs" />
+    <Compile Include="Mapping\Request\IEmployeeReqMappingRequest.cs" />
+    <Compile Include="Mapping\Response\ICategoryMappingResponse.cs" />
     <Compile Include="Mapping\Response\ICustomerMappingResponse.cs" />
     <Compile Include="Mapping\Response\IEmployeeMappingResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Implementation\CategoryRepository.cs" />
     <Compile Include="Repository\Implementation\CustomerRepository.cs" />
     <Compile Include="Repository\Implementation\EmployeeRepository.cs" />
     <Compile Include="Repository\Implementation\GenericRepository.cs" />
+    <Compile Include="Repository\Intefaces\ICategoryRepository.cs" />
     <Compile Include="Repository\Intefaces\ICustomerRepository.cs" />
     <Compile Include="Repository\Intefaces\IEmployeeRepository.cs" />
     <Compile Include="Repository\Intefaces\IGenericRepository.cs" />

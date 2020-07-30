@@ -13,6 +13,5 @@ namespace Workshop.DAL.Mapping.Response
     {
         IEnumerable<EmployeeDTO> MapEmployeeDBModelToEmployeeDTO(IEnumerable<W_D_Employee> employees);
         EmployeeDTO MapEmployeeDBModelToEmployeeDTO(W_D_Employee employee);
-        W_D_Employee MapEmployeeReqToDBModel(EmployeeReq employeeReq);
     }
 }

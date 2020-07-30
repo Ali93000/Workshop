@@ -26,10 +26,5 @@ namespace Workshop.Api.Mapping.Response
         {
             return _employeeMapperConfiguration.GetMapper().Map<EmployeeDTO>(employee);
         }
-
-        public W_D_Employee MapEmployeeReqToDBModel(EmployeeReq employeeReq)
-        {
-            return _employeeMapperConfiguration.GetMapper().Map<W_D_Employee>(employeeReq);
-        }
     }
 }

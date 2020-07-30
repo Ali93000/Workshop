@@ -16,7 +16,8 @@ namespace Workshop.DAL.Domain
     {
         public int Id { get; set; }
         public string CustomerCode { get; set; }
-        public string CustomerName { get; set; }
+        public string CustomerNameAr { get; set; }
+        public string CustomerNameEn { get; set; }
         public string Mobil1 { get; set; }
         public string Mobil2 { get; set; }
         public string CustomerAddress { get; set; }

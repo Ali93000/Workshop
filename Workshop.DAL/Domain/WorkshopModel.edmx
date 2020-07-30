@@ -5,13 +5,23 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="WorkshopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="W_D_Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryNameAr" Type="nvarchar" MaxLength="150" />
+          <Property Name="CategoryNameEn" Type="nvarchar" MaxLength="150" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
         <EntityType Name="W_D_Customer">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CustomerCode" Type="nvarchar" MaxLength="50" />
-          <Property Name="CustomerName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CustomerNameAr" Type="nvarchar" MaxLength="100" />
+          <Property Name="CustomerNameEn" Type="nvarchar" MaxLength="100" />
           <Property Name="Mobil1" Type="nvarchar" MaxLength="50" />
           <Property Name="Mobil2" Type="nvarchar" MaxLength="50" />
           <Property Name="CustomerAddress" Type="nvarchar" MaxLength="250" />
@@ -30,7 +40,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmpCode" Type="nvarchar" MaxLength="50" />
-          <Property Name="EmpName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmpNameAr" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmpNameEn" Type="nvarchar" MaxLength="50" />
           <Property Name="Mobile1" Type="nvarchar" MaxLength="50" />
           <Property Name="Mobile2" Type="nvarchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" />
@@ -49,7 +60,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VendorCode" Type="nvarchar" MaxLength="50" />
-          <Property Name="VerndorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="VerndorNameAr" Type="nvarchar" MaxLength="50" />
+          <Property Name="VerndorNameEn" Type="nvarchar" MaxLength="50" />
           <Property Name="ResponsibleName" Type="nvarchar" MaxLength="50" />
           <Property Name="Mobile1" Type="nvarchar" MaxLength="50" />
           <Property Name="Mobile2" Type="nvarchar" MaxLength="50" />
@@ -66,6 +78,7 @@
           <Property Name="BranchCode" Type="int" />
         </EntityType>
         <EntityContainer Name="WorkshopDBModelStoreContainer">
+          <EntitySet Name="W_D_Category" EntityType="Self.W_D_Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="W_D_Customer" EntityType="Self.W_D_Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="W_D_Employee" EntityType="Self.W_D_Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="W_D_Vendor" EntityType="Self.W_D_Vendor" Schema="dbo" store:Type="Tables" />
@@ -74,13 +87,29 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WorkshopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WorkshopDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="W_D_Category" EntityType="WorkshopDBModel.W_D_Category" />
+          <EntitySet Name="W_D_Customer" EntityType="WorkshopDBModel.W_D_Customer" />
+          <EntitySet Name="W_D_Employee" EntityType="WorkshopDBModel.W_D_Employee" />
+          <EntitySet Name="W_D_Vendor" EntityType="WorkshopDBModel.W_D_Vendor" />
+        </EntityContainer>
+        <EntityType Name="W_D_Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryNameAr" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryNameEn" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
         <EntityType Name="W_D_Customer">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CustomerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerNameAr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerNameEn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Mobil1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Mobil2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CustomerAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -93,18 +122,14 @@
           <Property Name="CompCode" Type="Int32" />
           <Property Name="BranchCode" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="WorkshopDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="W_D_Customer" EntityType="Self.W_D_Customer" />
-          <EntitySet Name="W_D_Employee" EntityType="WorkshopDBModel.W_D_Employee" />
-          <EntitySet Name="W_D_Vendor" EntityType="WorkshopDBModel.W_D_Vendor" />
-        </EntityContainer>
         <EntityType Name="W_D_Employee">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmpCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EmpName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpNameAr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpNameEn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Mobile1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Mobile2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
@@ -123,7 +148,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VendorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="VerndorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VerndorNameAr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VerndorNameEn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ResponsibleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Mobile1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Mobile2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -145,23 +171,34 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="WorkshopDBModelStoreContainer" CdmEntityContainer="WorkshopDBEntities">
+          <EntitySetMapping Name="W_D_Category">
+            <EntityTypeMapping TypeName="WorkshopDBModel.W_D_Category">
+              <MappingFragment StoreEntitySet="W_D_Category">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CategoryNameEn" ColumnName="CategoryNameEn" />
+                <ScalarProperty Name="CategoryNameAr" ColumnName="CategoryNameAr" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="W_D_Customer">
             <EntityTypeMapping TypeName="WorkshopDBModel.W_D_Customer">
               <MappingFragment StoreEntitySet="W_D_Customer">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="Mobil1" ColumnName="Mobil1" />
-                <ScalarProperty Name="Mobil2" ColumnName="Mobil2" />
-                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
                 <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+                <ScalarProperty Name="Mobil2" ColumnName="Mobil2" />
+                <ScalarProperty Name="Mobil1" ColumnName="Mobil1" />
+                <ScalarProperty Name="CustomerNameEn" ColumnName="CustomerNameEn" />
+                <ScalarProperty Name="CustomerNameAr" ColumnName="CustomerNameAr" />
+                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -179,7 +216,8 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Mobile2" ColumnName="Mobile2" />
                 <ScalarProperty Name="Mobile1" ColumnName="Mobile1" />
-                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="EmpNameEn" ColumnName="EmpNameEn" />
+                <ScalarProperty Name="EmpNameAr" ColumnName="EmpNameAr" />
                 <ScalarProperty Name="EmpCode" ColumnName="EmpCode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -202,7 +240,8 @@
                 <ScalarProperty Name="Mobile2" ColumnName="Mobile2" />
                 <ScalarProperty Name="Mobile1" ColumnName="Mobile1" />
                 <ScalarProperty Name="ResponsibleName" ColumnName="ResponsibleName" />
-                <ScalarProperty Name="VerndorName" ColumnName="VerndorName" />
+                <ScalarProperty Name="VerndorNameEn" ColumnName="VerndorNameEn" />
+                <ScalarProperty Name="VerndorNameAr" ColumnName="VerndorNameAr" />
                 <ScalarProperty Name="VendorCode" ColumnName="VendorCode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

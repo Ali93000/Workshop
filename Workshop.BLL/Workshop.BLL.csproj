@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,6 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category\Enquiry\CategoryEnquiryFunc.cs" />
+    <Compile Include="Category\Enquiry\ICategoryEnquiryFunc.cs" />
+    <Compile Include="Category\Operational\CategoryOperationalFunc.cs" />
+    <Compile Include="Category\Operational\ICategoryOperationalFunc.cs" />
+    <Compile Include="ConfigurationVariable\ConfigurationVariable.cs" />
     <Compile Include="Customer\Enquiry\CustomerEnquiryFunc.cs" />
     <Compile Include="Customer\Enquiry\ICustomerEnquiryFunc.cs" />
     <Compile Include="Customer\Operational\CustomerOperationalFunc.cs" />
