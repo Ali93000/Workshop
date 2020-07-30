@@ -6,9 +6,9 @@ using System.Web;
 
 namespace Workshop.Api.Validation.ModelValidator
 {
-    public class DeleteCustomer_Int32Validator : AbstractValidator<Int32>
+    public class DeleteEmployee_Int32Validator : AbstractValidator<Int32>
     {
-        public DeleteCustomer_Int32Validator()
+        public DeleteEmployee_Int32Validator()
         {
             RuleFor(x => x)
                 .NotEmpty()

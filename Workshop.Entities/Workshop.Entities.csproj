@@ -42,12 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiModels\Customer\CustomerReq.cs" />
+    <Compile Include="ApiModels\Employee\EmployeeReq.cs" />
     <Compile Include="ApiModels\GenericResponse.cs" />
-    <Compile Include="DTO\CustomerDTO.cs" />
+    <Compile Include="DTO\Customer\CustomerDTO.cs" />
+    <Compile Include="DTO\Employee\EmployeeDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DTO\Customer\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

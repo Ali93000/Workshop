@@ -6,16 +6,15 @@ using System.Web;
 
 namespace Workshop.Api.Validation.ModelValidator
 {
-    public class DeleteCustomer_Int32Validator : AbstractValidator<Int32>
+    public class GetEmployeeById_Int32Validator : AbstractValidator<Int32>
     {
-        public DeleteCustomer_Int32Validator()
+        public GetEmployeeById_Int32Validator()
         {
             RuleFor(x => x)
-                .NotEmpty()
-                .Must(CheckIdIsNumber).WithMessage("Id Is Required");
+                .Must(BeValidNumber).WithMessage("Id Is Required");
         }
 
-        public bool CheckIdIsNumber(int id)
+        public bool BeValidNumber(int id)
         {
             if (id == 0 || id > Int32.MaxValue || id < 0)
                 return false;

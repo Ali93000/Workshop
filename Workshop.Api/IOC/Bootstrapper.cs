@@ -14,6 +14,8 @@ using Workshop.Api.Mapping.Response;
 using Workshop.Api.Validation.Configuration;
 using Workshop.BLL.Customer.Enquiry;
 using Workshop.BLL.Customer.Operational;
+using Workshop.BLL.Employee.Enquiry;
+using Workshop.BLL.Employee.Operational;
 using Workshop.DAL.Mapping.Request;
 using Workshop.DAL.Mapping.Response;
 using Workshop.DAL.Repository.Implementation;
@@ -47,11 +49,13 @@ namespace Workshop.Api.IOC
         {
             await Task.Run(() =>
             {
+                // Customer
                 container.RegisterType<ICustomerMapperConfiguration, CustomerMapperConfiguration>();
-                // Map Request
                 container.RegisterType<ICustomerReqMappingRequest, CustomerReqMappingRequest>();
-                // Map Response
                 container.RegisterType<ICustomerMappingResponse, CustomerMappingResponse>();
+                // Employee
+                container.RegisterType<IEmployeeMapperConfiguration, EmployeeMapperConfiguration>();
+                container.RegisterType<IEmployeeMappingResponse, EmployeeMappingResponse>();
             });
         }
 
@@ -59,8 +63,12 @@ namespace Workshop.Api.IOC
         {
             await Task.Run(() =>
             {
+                // Customer
                 container.RegisterType<ICustomerEnquiryFunc, CustomerEnquiryFunc>();
                 container.RegisterType<ICustomerOperationalFunc, CustomerOperationalFunc>();
+                // Employee
+                container.RegisterType<IEmployeeEnquiryFunc, EmployeeEnquiryFunc>();
+                container.RegisterType<IEmployeeOperationaFunc, EmployeeOperationaFunc>();
 
             });
         }

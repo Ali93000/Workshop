@@ -17,7 +17,7 @@ namespace Workshop.Api.Validation.ModelValidator
 
         public bool CheckIdIsNumber(int id)
         {
-            if (id == 0 ||  id > Int32.MaxValue || id < Int32.MinValue)
+            if (id == 0 ||  id > Int32.MaxValue || id < 0)
                 return false;
             return true;
         }

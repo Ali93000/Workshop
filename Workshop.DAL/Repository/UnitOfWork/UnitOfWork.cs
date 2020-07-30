@@ -17,6 +17,7 @@ namespace Workshop.DAL.Repository.UnitOfWork
         {
             this._context = context;
             CustomerRepository = new CustomerRepository(context);
+            EmployeeRepository = new EmployeeRepository(context);
         }
 
         // 
@@ -32,5 +33,7 @@ namespace Workshop.DAL.Repository.UnitOfWork
 
         // Custum Repository
         public ICustomerRepository CustomerRepository { get; }
+
+        public IEmployeeRepository EmployeeRepository { get; }
     }
 }

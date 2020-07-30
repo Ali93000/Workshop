@@ -20,12 +20,14 @@ namespace Workshop.DAL.Domain
         {
             var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<W_D_Customer> W_D_Customer { get; set; }
+        public virtual DbSet<W_D_Employee> W_D_Employee { get; set; }
+        public virtual DbSet<W_D_Vendor> W_D_Vendor { get; set; }
     }
 }

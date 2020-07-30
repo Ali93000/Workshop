@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WorkshopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WorkshopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="W_D_Customer">
           <Key>
             <PropertyRef Name="Id" />
@@ -24,11 +24,53 @@
           <Property Name="CompCode" Type="int" />
           <Property Name="BranchCode" Type="int" />
         </EntityType>
+        <EntityType Name="W_D_Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmpName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile2" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="EmpSpecialist" Type="nvarchar" MaxLength="250" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="350" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompCode" Type="int" />
+          <Property Name="BranchCode" Type="int" />
+        </EntityType>
+        <EntityType Name="W_D_Vendor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VendorCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="VerndorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResponsibleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile2" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="VatNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="VatType" Type="nvarchar" MaxLength="50" />
+          <Property Name="VendorAddress" Type="nvarchar" MaxLength="250" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="350" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompCode" Type="int" />
+          <Property Name="BranchCode" Type="int" />
+        </EntityType>
         <EntityContainer Name="WorkshopDBModelStoreContainer">
           <EntitySet Name="W_D_Customer" EntityType="Self.W_D_Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="W_D_Employee" EntityType="Self.W_D_Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="W_D_Vendor" EntityType="Self.W_D_Vendor" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WorkshopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -53,7 +95,50 @@
         </EntityType>
         <EntityContainer Name="WorkshopDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="W_D_Customer" EntityType="Self.W_D_Customer" />
+          <EntitySet Name="W_D_Employee" EntityType="WorkshopDBModel.W_D_Employee" />
+          <EntitySet Name="W_D_Vendor" EntityType="WorkshopDBModel.W_D_Vendor" />
         </EntityContainer>
+        <EntityType Name="W_D_Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="EmpSpecialist" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompCode" Type="Int32" />
+          <Property Name="BranchCode" Type="Int32" />
+        </EntityType>
+        <EntityType Name="W_D_Vendor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VerndorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResponsibleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="VatNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VatType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VendorAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompCode" Type="Int32" />
+          <Property Name="BranchCode" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -77,6 +162,49 @@
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
                 <ScalarProperty Name="CompCode" ColumnName="CompCode" />
                 <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="W_D_Employee">
+            <EntityTypeMapping TypeName="WorkshopDBModel.W_D_Employee">
+              <MappingFragment StoreEntitySet="W_D_Employee">
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="EmpSpecialist" ColumnName="EmpSpecialist" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Mobile2" ColumnName="Mobile2" />
+                <ScalarProperty Name="Mobile1" ColumnName="Mobile1" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="EmpCode" ColumnName="EmpCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="W_D_Vendor">
+            <EntityTypeMapping TypeName="WorkshopDBModel.W_D_Vendor">
+              <MappingFragment StoreEntitySet="W_D_Vendor">
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="VendorAddress" ColumnName="VendorAddress" />
+                <ScalarProperty Name="VatType" ColumnName="VatType" />
+                <ScalarProperty Name="VatNo" ColumnName="VatNo" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Mobile2" ColumnName="Mobile2" />
+                <ScalarProperty Name="Mobile1" ColumnName="Mobile1" />
+                <ScalarProperty Name="ResponsibleName" ColumnName="ResponsibleName" />
+                <ScalarProperty Name="VerndorName" ColumnName="VerndorName" />
+                <ScalarProperty Name="VendorCode" ColumnName="VendorCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

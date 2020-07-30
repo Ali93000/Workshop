@@ -71,12 +71,21 @@
     <Compile Include="Domain\W_D_Customer.cs">
       <DependentUpon>WorkshopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Domain\W_D_Employee.cs">
+      <DependentUpon>WorkshopModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\W_D_Vendor.cs">
+      <DependentUpon>WorkshopModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Mapping\Request\ICustomerReqMappingRequest.cs" />
     <Compile Include="Mapping\Response\ICustomerMappingResponse.cs" />
+    <Compile Include="Mapping\Response\IEmployeeMappingResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Implementation\CustomerRepository.cs" />
+    <Compile Include="Repository\Implementation\EmployeeRepository.cs" />
     <Compile Include="Repository\Implementation\GenericRepository.cs" />
     <Compile Include="Repository\Intefaces\ICustomerRepository.cs" />
+    <Compile Include="Repository\Intefaces\IEmployeeRepository.cs" />
     <Compile Include="Repository\Intefaces\IGenericRepository.cs" />
     <Compile Include="Repository\UnitOfWork\UnitOfWork.cs" />
     <Compile Include="Repository\UnitOfWork\IUnitOfWork.cs" />
