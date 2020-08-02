@@ -5,6 +5,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
+using Workshop.Entities.ApiModels.User.Response;
+using Workshop.Entities.DTO.User;
 
 namespace Workshop.Api.JWTImplementation
 {
@@ -13,24 +15,27 @@ namespace Workshop.Api.JWTImplementation
         
         public string Secret = "ERMN05OPLoDvbTTa/QkqLNMI7cPLguaRyHzyg7n5qNBVjQmtBhz4SzYh4NBVCXi3KJHlSXKP+oi2+bXr6CUYTR==";
 
-        public string GenerateToken(string username)
+        public string GenerateToken(UserDTO userLoginData)
         {
             byte[] key = Convert.FromBase64String(Secret);
             SymmetricSecurityKey securityKey = new SymmetricSecurityKey(key);
 
             // Add Custom Claims
             Dictionary<string, object> keyValuePairs = new Dictionary<string, object>();
-            keyValuePairs.Add("id", "1");
-            keyValuePairs.Add("role", "manager");
-            keyValuePairs.Add("Compcode", "1");
-            keyValuePairs.Add("Bracode", "1");
+            keyValuePairs.Add("Id", userLoginData.Id);
+            keyValuePairs.Add("Username", userLoginData.Username);
+            keyValuePairs.Add("RoleId", userLoginData.RoleId);
+            keyValuePairs.Add("RoleName", userLoginData.RoleName);
+            keyValuePairs.Add("CompCode", userLoginData.CompCode);
+            keyValuePairs.Add("BraCode", userLoginData.BraCode);
+            keyValuePairs.Add("CompName", userLoginData.CompName);
 
             SecurityTokenDescriptor descriptor = new SecurityTokenDescriptor
             {
                 // Add Custom Claims
                 Claims = keyValuePairs,
                 Subject = new ClaimsIdentity(new[] {
-                      new Claim(ClaimTypes.Name, username),
+                      new Claim(ClaimTypes.Name, userLoginData.Username),
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(30),
                 SigningCredentials = new SigningCredentials(securityKey,
@@ -97,18 +102,32 @@ namespace Workshop.Api.JWTImplementation
 
         // Read Token 
         // Must Return Privilages Class to use it in Insert
-        public void ReadToken(string jwtToken)
+        public UserDTO ReadToken(string jwtToken)
         {
             //var jwt = Request.Headers.Authorization.Parameter;
             var handler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
             System.IdentityModel.Tokens.Jwt.JwtSecurityToken token = handler.ReadJwtToken(jwtToken);
-
+    
             IEnumerable<Claim> claims = token.Claims.ToList();
 
-            string id = token.Claims.FirstOrDefault(x => x.Type == "id").Value;
-            string role = token.Claims.FirstOrDefault(x => x.Type == "role").Value;
-            string Compcode = token.Claims.FirstOrDefault(x => x.Type == "Compcode").Value;
-            string Bracode = token.Claims.FirstOrDefault(x => x.Type == "Bracode").Value;
+            string Id = token.Claims.FirstOrDefault(x => x.Type == "Id").Value;
+            string Username = token.Claims.FirstOrDefault(x => x.Type == "Username").Value;
+            string RoleId = token.Claims.FirstOrDefault(x => x.Type == "RoleId").Value;
+            string RoleName = token.Claims.FirstOrDefault(x => x.Type == "RoleName").Value;
+            string CompCode = token.Claims.FirstOrDefault(x => x.Type == "CompCode").Value;
+            string BraCode = token.Claims.FirstOrDefault(x => x.Type == "BraCode").Value;
+            string CompName = token.Claims.FirstOrDefault(x => x.Type == "CompName").Value;
+            UserDTO loginInfoResponse = new UserDTO()
+            {
+                Id = Convert.ToInt32(Id),
+                Username = Username,
+                RoleId = Convert.ToInt32(RoleId),
+                RoleName = RoleName,
+                CompCode = Convert.ToInt32(CompCode),
+                CompName = CompName,
+                BraCode = Convert.ToInt32(BraCode)
+            };
+            return loginInfoResponse;
         }
 
     }

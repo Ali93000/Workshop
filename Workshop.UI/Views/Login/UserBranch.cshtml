@@ -30,7 +30,7 @@
                     <input type="text" value="@ViewBag.CompName" class="form-control fontColor" disabled="disabled">
                 </div>
                 <div class="form-holder active fontColor">
-                    @Html.DropDownListFor(c => c.LanguageId, new SelectList(ViewBag.Language, "Id", "LangName"), new { @class = "form-control fontColor" })
+                    @Html.DropDownListFor(c => c.BraCode, new SelectList(ViewBag.BranchesList, "BraCode", "BraDesAr"), new { @class = "form-control fontColor" })
                 </div>
 
                 <div class="form-login">

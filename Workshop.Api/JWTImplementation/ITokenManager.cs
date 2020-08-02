@@ -4,16 +4,17 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Workshop.Entities.DTO.User;
 
 namespace Workshop.Api.JWTImplementation
 {
     public interface ITokenManager
     {
         //string Secret { get; }
-        string GenerateToken(string username);
+        string GenerateToken(UserDTO userLoginData);
         ClaimsPrincipal GetPrincipal(string token);
         string ValidateToken(string token);
 
-        void ReadToken(string jwtToken);
+        UserDTO ReadToken(string jwtToken);
     }
 }

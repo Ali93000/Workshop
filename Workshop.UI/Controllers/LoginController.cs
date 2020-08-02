@@ -34,26 +34,28 @@ namespace Workshop.UI.Controllers
             ViewBag.Language = languages;
 
             // Call Api To Check User
-            userLogin.CompCode = 1;
-            userLogin.CompName = "Master Works";
-            userLogin.RoleId = 1;
-            userLogin.RoleName = "Manager"; 
-            TempData["UserLoginData"] = userLogin;
-
+            UserConsumer userConsumer = new UserConsumer();
+            UserLoginInfoResponse result = userConsumer.Login(userLogin);
+            if (result.IsSuccessful == false && result.ResponseCode != System.Net.HttpStatusCode.OK)
+            {
+                ModelState.AddModelError("loginFailed", Resources.SysResource.LoginFailed);
+                return View();
+            }
+            TempData["UserLoginData"] = result;
+            TempData.Keep();
             return RedirectToAction("UserBranch");
         }
 
 
         public ActionResult UserBranch()
         {
-            var languages = new List<Languages>
-            {
-                new Languages(){ Id = 1, LangName = "الفرع الاول"},
-                new Languages(){ Id = 2, LangName = "الفرع التانى"}
-            };
-            ViewBag.Language = languages;
-            var data = TempData["UserLoginData"] as UserLogin;
-            ViewBag.CompName = data.CompName;
+            BranchConsumer branchConsumer = new BranchConsumer();
+            Models.Branch.BranchesResponse branches = branchConsumer.GetAllBranches();
+            
+            ViewBag.BranchesList = branches.BranchesList;
+            var userData = TempData["UserLoginData"] as UserLoginInfoResponse;
+            TempData.Keep();
+            ViewBag.CompName = userData.UserLoginInfo.CompName;
 
             return View();
         }
@@ -61,18 +63,17 @@ namespace Workshop.UI.Controllers
         [HttpPost]
         public ActionResult UserBranch(UserLogin userLogin)
         {
-            var languages = new List<Languages>
-            {
-                new Languages(){ Id = 1, LangName = "الفرع الاول"},
-                new Languages(){ Id = 2, LangName = "الفرع التانى"}
-            };
-            ViewBag.Language = languages;
+            BranchConsumer branchConsumer = new BranchConsumer();
+            Models.Branch.BranchesResponse branches = branchConsumer.GetAllBranches();
 
-            var userInfo = TempData["UserLoginData"] as UserLoginInfo;
-            userInfo.BraCode = userLogin.BraCode;
-            Session["UserData"] = userInfo;
-            // Call Api To Check User
-
+            ViewBag.BranchesList = branches.BranchesList;
+            var userInfo = TempData["UserLoginData"] as UserLoginInfoResponse;
+            TempData.Keep();
+            userInfo.UserLoginInfo.BraCode = userLogin.BraCode;
+            Session["UserData"] = userInfo.UserLoginInfo;
+            // Call Api To Get Token
+            var accessToken = TokenConsumer.GetAccessToken(userInfo);
+            Session["token"] = accessToken;
             return RedirectToAction("Index", "Home");
         }
     }

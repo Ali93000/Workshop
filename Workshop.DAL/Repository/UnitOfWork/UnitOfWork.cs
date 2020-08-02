@@ -20,6 +20,8 @@ namespace Workshop.DAL.Repository.UnitOfWork
             EmployeeRepository = new EmployeeRepository(context);
             CategoryRepository = new CategoryRepository(context);
             ItemRepository = new ItemRepository(context);
+            UserRepository = new UserRepository(context);
+            BranchRepository = new BranchRepository(context);
         }
 
         // 
@@ -37,5 +39,8 @@ namespace Workshop.DAL.Repository.UnitOfWork
         public IEmployeeRepository EmployeeRepository { get; }
         public ICategoryRepository CategoryRepository { get; }
         public IItemRepository ItemRepository { get; }
+        public IUserRepository UserRepository { get; }
+
+        public IBranchRepository BranchRepository { get; }
     }
 }

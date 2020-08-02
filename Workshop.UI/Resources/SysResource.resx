@@ -129,6 +129,9 @@
   <data name="Language" xml:space="preserve">
     <value>اللغة</value>
   </data>
+  <data name="LoginFailed" xml:space="preserve">
+    <value>خطأ فى اسم المستخدم أو كلمة المرور</value>
+  </data>
   <data name="Login_ChooseBranch" xml:space="preserve">
     <value>إختار الفرع</value>
   </data>

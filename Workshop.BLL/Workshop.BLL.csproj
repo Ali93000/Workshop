@@ -42,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Branch\Enquiry\BranchEnquiryFunc.cs" />
+    <Compile Include="Branch\Enquiry\IBranchEnquiryFunc.cs" />
+    <Compile Include="Branch\Operational\BranchOperationalFunc.cs" />
+    <Compile Include="Branch\Operational\IBranchOperationalFunc.cs" />
     <Compile Include="Category\Enquiry\CategoryEnquiryFunc.cs" />
     <Compile Include="Category\Enquiry\ICategoryEnquiryFunc.cs" />
     <Compile Include="Category\Operational\CategoryOperationalFunc.cs" />
@@ -60,6 +64,10 @@
     <Compile Include="Item\Operational\IItemOperationalFunc.cs" />
     <Compile Include="Item\Operational\ItemOperationalFunc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\Enquiry\IUserEnquiryFunc.cs" />
+    <Compile Include="User\Enquiry\UserEnquiryFunc.cs" />
+    <Compile Include="User\Operational\IUserOperationalFunc.cs" />
+    <Compile Include="User\Operational\UserOperationalFunc.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

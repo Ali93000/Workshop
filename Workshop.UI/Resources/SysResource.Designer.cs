@@ -124,6 +124,15 @@ namespace Workshop.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to خطأ فى اسم المستخدم أو كلمة المرور.
+        /// </summary>
+        public static string LoginFailed {
+            get {
+                return ResourceManager.GetString("LoginFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to كلمة السر.
         /// </summary>
         public static string Password {

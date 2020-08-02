@@ -5,14 +5,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9b4e57ff23cf44778f8f7658968564bb" Name="Diagram1">
-        <EntityTypeShape EntityType="WorkshopDBModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkshopDBModel.W_D_Category" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkshopDBModel.W_D_Customer" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkshopDBModel.W_D_Employee" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkshopDBModel.W_D_Items" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkshopDBModel.W_D_Vendor" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
-        <AssociationConnector Association="WorkshopDBModel.FK_W_D_Items_W_D_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="WorkshopDBModel.FK_W_D_Items_W_D_Vendor" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WorkshopDBModel.G_Branches" Width="1.5" PointX="3" PointY="10.375" />
+        <EntityTypeShape EntityType="WorkshopDBModel.G_Companies" Width="1.5" PointX="0.75" PointY="4.375" />
+        <EntityTypeShape EntityType="WorkshopDBModel.G_USERS" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="WorkshopDBModel.G_USERS_BRANCHES" Width="1.5" PointX="5.25" PointY="7.75" />
+        <EntityTypeShape EntityType="WorkshopDBModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WorkshopDBModel.UserRole" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="WorkshopDBModel.W_D_Category" Width="1.5" PointX="5.75" PointY="2.875" />
+        <EntityTypeShape EntityType="WorkshopDBModel.W_D_Customer" Width="1.5" PointX="7.75" PointY="7.75" />
+        <EntityTypeShape EntityType="WorkshopDBModel.W_D_Employee" Width="1.5" PointX="9.75" PointY="7.75" />
+        <EntityTypeShape EntityType="WorkshopDBModel.W_D_Items" Width="1.5" PointX="8" PointY="1.125" />
+        <EntityTypeShape EntityType="WorkshopDBModel.W_D_Vendor" Width="1.5" PointX="5.75" PointY="12.5" />
+        <AssociationConnector Association="WorkshopDBModel.FK_G_Branches_G_Companies" />
+        <AssociationConnector Association="WorkshopDBModel.FK_G_USERS_BRANCHES_G_Branches" />
+        <AssociationConnector Association="WorkshopDBModel.FK_G_USERS_BRANCHES_G_Companies" />
+        <AssociationConnector Association="WorkshopDBModel.FK_G_USERS_G_Companies" />
+        <AssociationConnector Association="WorkshopDBModel.FK_G_USERS_BRANCHES_G_USERS1" />
+        <AssociationConnector Association="WorkshopDBModel.FK_G_USERS_UserRoles1" />
+        <AssociationConnector Association="WorkshopDBModel.FK_W_D_Items_W_D_Category" />
+        <AssociationConnector Association="WorkshopDBModel.FK_W_D_Items_W_D_Vendor" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

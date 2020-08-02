@@ -20,13 +20,18 @@ namespace Workshop.DAL.Domain
         {
             var inSureDBIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<G_Branches> G_Branches { get; set; }
+        public virtual DbSet<G_Companies> G_Companies { get; set; }
+        public virtual DbSet<G_USERS> G_USERS { get; set; }
+        public virtual DbSet<G_USERS_BRANCHES> G_USERS_BRANCHES { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<W_D_Category> W_D_Category { get; set; }
         public virtual DbSet<W_D_Customer> W_D_Customer { get; set; }
         public virtual DbSet<W_D_Employee> W_D_Employee { get; set; }

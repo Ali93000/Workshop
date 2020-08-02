@@ -27,10 +27,10 @@
             {
                     <h3>@SysResource.Login_logintosystem</h3>
                     <div class="form-holder active">
-                        <input type="text" name="Username" placeholder="@SysResource.Username" class="form-control fontColor" >
+                        <input type="text" name="Username" placeholder="@SysResource.Username" class="form-control fontColor" required >
                     </div>
                     <div class="form-holder active">
-                        <input type="password" name="Password" placeholder="@SysResource.Password" class="form-control fontColor" style="font-size: 15px;">
+                        <input type="password" name="Password" placeholder="@SysResource.Password" class="form-control fontColor" style="font-size: 15px;" required>
                     </div>
                     <div class="form-holder active">
                         @Html.DropDownListFor(c => c.LanguageId, new SelectList(ViewBag.Language, "Id", "LangName"), new { @class = "form-control fontColor" })
@@ -38,6 +38,9 @@
 
                     <div class="form-login">
                         <button>@SysResource.btn_Login</button>
+                    </div>
+                    <div class="inValidPassword">
+                        @Html.ValidationMessage("loginFailed", new { @class = "text-danger" })
                     </div>
             }
         </div>

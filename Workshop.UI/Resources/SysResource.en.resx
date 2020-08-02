@@ -129,6 +129,9 @@
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="LoginFailed" xml:space="preserve">
+    <value>Invalid Username or Password</value>
+  </data>
   <data name="Login_ChooseBranch" xml:space="preserve">
     <value>Choose Branch</value>
   </data>

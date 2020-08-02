@@ -13,6 +13,8 @@ using Workshop.Api.Mapping.AutomapperConfiguration.Interfaces;
 using Workshop.Api.Mapping.Request;
 using Workshop.Api.Mapping.Response;
 using Workshop.Api.Validation.Configuration;
+using Workshop.BLL.Branch.Enquiry;
+using Workshop.BLL.Branch.Operational;
 using Workshop.BLL.Category.Enquiry;
 using Workshop.BLL.Category.Operational;
 using Workshop.BLL.Customer.Enquiry;
@@ -21,6 +23,8 @@ using Workshop.BLL.Employee.Enquiry;
 using Workshop.BLL.Employee.Operational;
 using Workshop.BLL.Item.Enquiry;
 using Workshop.BLL.Item.Operational;
+using Workshop.BLL.User.Enquiry;
+using Workshop.BLL.User.Operational;
 using Workshop.DAL.Mapping.Request;
 using Workshop.DAL.Mapping.Response;
 using Workshop.DAL.Repository.Implementation;
@@ -71,6 +75,14 @@ namespace Workshop.Api.IOC
                 container.RegisterType<IItemMapperConfiguration, ItemMapperConfiguration>();
                 container.RegisterType<IItemReqMappingRequest, ItemReqMappingRequest>();
                 container.RegisterType<IItemMappingResponse, ItemMappingResponse>();
+                // Items
+                container.RegisterType<IUserMapperConfiguration, UserMapperConfiguration>();
+                container.RegisterType<IUserReqMappingRequest, UserReqMappingRequest>();
+                container.RegisterType<IUserMappingResponse, UserMappingResponse>();
+                // Branch
+                container.RegisterType<IBranchMapperConfiguration, BranchMapperConfiguration>();
+                container.RegisterType<IBranchReqMappingRequest, BranchReqMappingRequest>();
+                container.RegisterType<IBranchMappingResponse, BranchMappingResponse>();
             });
         }
 
@@ -90,6 +102,12 @@ namespace Workshop.Api.IOC
                 // Items
                 container.RegisterType<IItemEnquiryFunc, ItemEnquiryFunc>();
                 container.RegisterType<IItemOperationalFunc, ItemOperationalFunc>();
+                // User
+                container.RegisterType<IUserEnquiryFunc, UserEnquiryFunc>();
+                container.RegisterType<IUserOperationalFunc, UserOperationalFunc>();
+                // Branch
+                container.RegisterType<IBranchEnquiryFunc, BranchEnquiryFunc>();
+                container.RegisterType<IBranchOperationalFunc, BranchOperationalFunc>();
 
             });
         }
@@ -102,6 +120,8 @@ namespace Workshop.Api.IOC
                 container.RegisterType<ICustomerRepository, CustomerRepository>();
                 container.RegisterType<ICategoryRepository, CategoryRepository>();
                 container.RegisterType<IItemRepository, ItemRepository>();
+                container.RegisterType<IUserRepository, UserRepository>();
+                container.RegisterType<IBranchRepository, BranchRepository>();
             });
         }
 
