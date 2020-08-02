@@ -41,13 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiModels\Category\CategoryReq.cs" />
-    <Compile Include="ApiModels\Customer\CustomerReq.cs" />
-    <Compile Include="ApiModels\Employee\EmployeeReq.cs" />
+    <Compile Include="ApiModels\Category\Request\CategoryReq.cs" />
+    <Compile Include="ApiModels\Category\Response\CategoriesResponse.cs" />
+    <Compile Include="ApiModels\Category\Response\CategoryResponse.cs" />
+    <Compile Include="ApiModels\Customer\Request\CustomerReq.cs" />
+    <Compile Include="ApiModels\Customer\Response\CustomerResponse.cs" />
+    <Compile Include="ApiModels\Customer\Response\CustomersResponse.cs" />
+    <Compile Include="ApiModels\Employee\Request\EmployeeReq.cs" />
+    <Compile Include="ApiModels\Employee\Response\EmployeeResponse.cs" />
+    <Compile Include="ApiModels\Employee\Response\EmployeesResponse.cs" />
     <Compile Include="ApiModels\GenericResponse.cs" />
+    <Compile Include="ApiModels\Item\Request\ItemReq.cs" />
+    <Compile Include="ApiModels\Item\Response\ItemResponse.cs" />
+    <Compile Include="ApiModels\Item\Response\ItemsResponse.cs" />
     <Compile Include="DTO\Category\CategoryDTO.cs" />
     <Compile Include="DTO\Customer\CustomerDTO.cs" />
     <Compile Include="DTO\Employee\EmployeeDTO.cs" />
+    <Compile Include="DTO\ItemDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

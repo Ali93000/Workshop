@@ -55,6 +55,10 @@
     <Compile Include="Employee\Enquiry\IEmployeeEnquiryFunc.cs" />
     <Compile Include="Employee\Operational\EmployeeOperationaFunc.cs" />
     <Compile Include="Employee\Operational\ICustomerOperationaFunc.cs" />
+    <Compile Include="Item\Enquiry\IItemEnquiryFunc.cs" />
+    <Compile Include="Item\Enquiry\ItemEnquiryFunc.cs" />
+    <Compile Include="Item\Operational\IItemOperationalFunc.cs" />
+    <Compile Include="Item\Operational\ItemOperationalFunc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

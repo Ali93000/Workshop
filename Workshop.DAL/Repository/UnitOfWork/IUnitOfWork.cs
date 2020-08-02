@@ -15,5 +15,6 @@ namespace Workshop.DAL.Repository.UnitOfWork
         ICustomerRepository CustomerRepository { get; }
         IEmployeeRepository EmployeeRepository { get; }
         ICategoryRepository CategoryRepository { get; }
+        IItemRepository ItemRepository { get; }
     }
 }

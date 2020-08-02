@@ -19,6 +19,7 @@ namespace Workshop.DAL.Repository.UnitOfWork
             CustomerRepository = new CustomerRepository(context);
             EmployeeRepository = new EmployeeRepository(context);
             CategoryRepository = new CategoryRepository(context);
+            ItemRepository = new ItemRepository(context);
         }
 
         // 
@@ -35,5 +36,6 @@ namespace Workshop.DAL.Repository.UnitOfWork
         public ICustomerRepository CustomerRepository { get; }
         public IEmployeeRepository EmployeeRepository { get; }
         public ICategoryRepository CategoryRepository { get; }
+        public IItemRepository ItemRepository { get; }
     }
 }

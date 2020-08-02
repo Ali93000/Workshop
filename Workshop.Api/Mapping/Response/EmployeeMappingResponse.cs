@@ -6,6 +6,7 @@ using Workshop.Api.Mapping.AutomapperConfiguration.Interfaces;
 using Workshop.DAL.Domain;
 using Workshop.DAL.Mapping.Response;
 using Workshop.Entities.ApiModels.Employee;
+using Workshop.Entities.ApiModels.Employee.Response;
 using Workshop.Entities.DTO.Employee;
 
 namespace Workshop.Api.Mapping.Response
@@ -17,14 +18,14 @@ namespace Workshop.Api.Mapping.Response
         {
             this._employeeMapperConfiguration = employeeMapperConfiguration;
         }
-        public IEnumerable<EmployeeDTO> MapEmployeeDBModelToEmployeeDTO(IEnumerable<W_D_Employee> employees)
+        public EmployeesResponse MapEmployeeDBModelToEmployeeDTO(IEnumerable<W_D_Employee> employees)
         {
-            return _employeeMapperConfiguration.GetMapper().Map<IEnumerable<EmployeeDTO>>(employees);
+            return _employeeMapperConfiguration.GetMapper().Map<EmployeesResponse>(employees);
         }
 
-        public EmployeeDTO MapEmployeeDBModelToEmployeeDTO(W_D_Employee employee)
+        public EmployeeResponse MapEmployeeDBModelToEmployeeDTO(W_D_Employee employee)
         {
-            return _employeeMapperConfiguration.GetMapper().Map<EmployeeDTO>(employee);
+            return _employeeMapperConfiguration.GetMapper().Map<EmployeeResponse>(employee);
         }
     }
 }

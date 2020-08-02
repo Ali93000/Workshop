@@ -203,6 +203,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Filters\JWTAuthentication.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -214,16 +215,20 @@
     <Compile Include="Mapping\AutomapperConfiguration\Implementation\CategoryMapperConfiguration.cs" />
     <Compile Include="Mapping\AutomapperConfiguration\Implementation\CustomerMapperConfiguration.cs" />
     <Compile Include="Mapping\AutomapperConfiguration\Implementation\EmployeeMapperConfiguration.cs" />
+    <Compile Include="Mapping\AutomapperConfiguration\Implementation\ItemMapperConfiguration.cs" />
     <Compile Include="Mapping\AutomapperConfiguration\Interfaces\ICategoryMapperConfiguration.cs" />
     <Compile Include="Mapping\AutomapperConfiguration\Interfaces\ICustomerMapperConfiguration.cs" />
     <Compile Include="Mapping\AutomapperConfiguration\Interfaces\IEmployeeMapperConfiguration.cs" />
+    <Compile Include="Mapping\AutomapperConfiguration\Interfaces\IItemMapperConfiguration.cs" />
     <Compile Include="Mapping\AutomapperConfiguration\Interfaces\IMapperConfiguration.cs" />
     <Compile Include="Mapping\Request\CategoryReqMappingRequest.cs" />
     <Compile Include="Mapping\Request\CustomerReqMappingRequest.cs" />
     <Compile Include="Mapping\Request\EmployeeReqMappingRequest.cs" />
+    <Compile Include="Mapping\Request\ItemReqMappingRequest.cs" />
     <Compile Include="Mapping\Response\CategoryMappingResponse.cs" />
     <Compile Include="Mapping\Response\CustomerMappingResponse.cs" />
     <Compile Include="Mapping\Response\EmployeeMappingResponse.cs" />
+    <Compile Include="Mapping\Response\ItemMappingResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\Configuration\IModelStateValidator.cs" />
     <Compile Include="Validation\Configuration\ModelStateValidator.cs" />
@@ -239,6 +244,10 @@
     <Compile Include="Validation\ModelValidator\Employee\DeleteEmployee_Int32Validator.cs" />
     <Compile Include="Validation\ModelValidator\Employee\GetEmployeeById_Int32Validator.cs" />
     <Compile Include="Validation\ModelValidator\Employee\UpdateEmployee_EmployeeReqValidator.cs" />
+    <Compile Include="Validation\ModelValidator\Item\CreateItem_ItemReqValidator.cs" />
+    <Compile Include="Validation\ModelValidator\Item\DeleteItem_Int32Validator.cs" />
+    <Compile Include="Validation\ModelValidator\Item\GetItemById_Int32Validator.cs" />
+    <Compile Include="Validation\ModelValidator\Item\UpdateItem_ItemReqValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

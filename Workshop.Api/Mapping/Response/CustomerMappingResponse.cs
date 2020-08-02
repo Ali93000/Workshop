@@ -5,6 +5,7 @@ using System.Web;
 using Workshop.Api.Mapping.AutomapperConfiguration.Interfaces;
 using Workshop.DAL.Domain;
 using Workshop.DAL.Mapping.Response;
+using Workshop.Entities.ApiModels.Customer.Response;
 using Workshop.Entities.DTO;
 
 namespace Workshop.Api.Mapping.Response
@@ -16,14 +17,14 @@ namespace Workshop.Api.Mapping.Response
         {
             this._customerMapperConfiguration = customerMapperConfiguration;
         }
-        public IEnumerable<CustomerDTO> MapCustomerDTOFromDBCustomerModel(IEnumerable<W_D_Customer> DBCustomer)
+        public CustomersResponse MapCustomerDTOFromDBCustomerModel(IEnumerable<W_D_Customer> DBCustomer)
         {
-            return _customerMapperConfiguration.GetMapper().Map<List<CustomerDTO>>(DBCustomer);
+            return _customerMapperConfiguration.GetMapper().Map<CustomersResponse>(DBCustomer);
         }
 
-        public CustomerDTO MapCustomerDTOFromDBCustomerModel(W_D_Customer DBCustomer)
+        public CustomerResponse MapCustomerDTOFromDBCustomerModel(W_D_Customer DBCustomer)
         {
-            return _customerMapperConfiguration.GetMapper().Map<CustomerDTO>(DBCustomer);
+            return _customerMapperConfiguration.GetMapper().Map<CustomerResponse>(DBCustomer);
         }
     }
 }

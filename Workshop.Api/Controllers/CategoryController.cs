@@ -14,9 +14,12 @@ namespace Workshop.Api.Controllers
 {
     public class CategoryController : ApiController
     {
+        // User Privilages
+        // 
         private readonly ICategoryEnquiryFunc _categoryEnquiryFunc;
         private readonly IModelStateValidator _modelStateValidator;
         private readonly ICategoryOperationalFunc _categoryOperationalFunc;
+        
         public CategoryController(ICategoryEnquiryFunc categoryEnquiryFunc, IModelStateValidator modelStateValidator, ICategoryOperationalFunc categoryOperationalFunc)
         {
             this._categoryEnquiryFunc = categoryEnquiryFunc;

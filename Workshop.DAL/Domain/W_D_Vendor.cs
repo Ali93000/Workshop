@@ -14,6 +14,12 @@ namespace Workshop.DAL.Domain
     
     public partial class W_D_Vendor
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public W_D_Vendor()
+        {
+            this.W_D_Items = new HashSet<W_D_Items>();
+        }
+    
         public int Id { get; set; }
         public string VendorCode { get; set; }
         public string VerndorNameAr { get; set; }
@@ -32,5 +38,8 @@ namespace Workshop.DAL.Domain
         public string UpdatedBy { get; set; }
         public Nullable<int> CompCode { get; set; }
         public Nullable<int> BranchCode { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<W_D_Items> W_D_Items { get; set; }
     }
 }

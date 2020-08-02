@@ -19,6 +19,8 @@ using Workshop.BLL.Customer.Enquiry;
 using Workshop.BLL.Customer.Operational;
 using Workshop.BLL.Employee.Enquiry;
 using Workshop.BLL.Employee.Operational;
+using Workshop.BLL.Item.Enquiry;
+using Workshop.BLL.Item.Operational;
 using Workshop.DAL.Mapping.Request;
 using Workshop.DAL.Mapping.Response;
 using Workshop.DAL.Repository.Implementation;
@@ -32,8 +34,7 @@ namespace Workshop.Api.IOC
         public static void Initialize()
         {
             var container = new UnityContainer();
-            // JWT Register
-            container.RegisterType<ITokenManager, TokenManager>();
+           
             RegisterDependencies(container);
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
@@ -44,12 +45,12 @@ namespace Workshop.Api.IOC
             Task t2 = RegisterBLL(container);
             Task t3 = RegisterValidation(container);
             Task t4 = RegisterRepositories(container);
+            Task t5 = RegisterJWT(container);
 
-            Task.WaitAll(t1, t2, t3, t4);
+            Task.WaitAll(t1, t2, t3, t4, t5);
         }
 
         
-
         private static async Task RegisterMapper(UnityContainer container)
         {
             await Task.Run(() =>
@@ -66,6 +67,10 @@ namespace Workshop.Api.IOC
                 container.RegisterType<ICategoryMapperConfiguration, CategoryMapperConfiguration>();
                 container.RegisterType<ICategoryReqMappingRequest, CategoryReqMappingRequest>();
                 container.RegisterType<ICategoryMappingResponse, CategoryMappingResponse>();
+                // Items
+                container.RegisterType<IItemMapperConfiguration, ItemMapperConfiguration>();
+                container.RegisterType<IItemReqMappingRequest, ItemReqMappingRequest>();
+                container.RegisterType<IItemMappingResponse, ItemMappingResponse>();
             });
         }
 
@@ -82,6 +87,9 @@ namespace Workshop.Api.IOC
                 // Category
                 container.RegisterType<ICategoryEnquiryFunc, CategoryEnquiryFunc>();
                 container.RegisterType<ICategoryOperationalFunc, CategoryOperationalFunc>();
+                // Items
+                container.RegisterType<IItemEnquiryFunc, ItemEnquiryFunc>();
+                container.RegisterType<IItemOperationalFunc, ItemOperationalFunc>();
 
             });
         }
@@ -93,6 +101,7 @@ namespace Workshop.Api.IOC
                 container.RegisterType<IUnitOfWork, UnitOfWork>();
                 container.RegisterType<ICustomerRepository, CustomerRepository>();
                 container.RegisterType<ICategoryRepository, CategoryRepository>();
+                container.RegisterType<IItemRepository, ItemRepository>();
             });
         }
 
@@ -101,6 +110,14 @@ namespace Workshop.Api.IOC
             await Task.Run(() =>
             {
                 container.RegisterType<IModelStateValidator, ModelStateValidator>();
+            });
+        }
+
+        public static async Task RegisterJWT(UnityContainer container)
+        {
+            await Task.Run(() => 
+            {
+                container.RegisterType<ITokenManager, TokenManager>();
             });
         }
     }

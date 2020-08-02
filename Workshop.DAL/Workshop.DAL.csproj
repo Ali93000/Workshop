@@ -53,6 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\sysdiagram.cs">
+      <DependentUpon>WorkshopModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain\WorkshopModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -77,24 +80,31 @@
     <Compile Include="Domain\W_D_Employee.cs">
       <DependentUpon>WorkshopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Domain\W_D_Items.cs">
+      <DependentUpon>WorkshopModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain\W_D_Vendor.cs">
       <DependentUpon>WorkshopModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Mapping\Request\ICategoryReqMappingRequest.cs" />
     <Compile Include="Mapping\Request\ICustomerReqMappingRequest.cs" />
     <Compile Include="Mapping\Request\IEmployeeReqMappingRequest.cs" />
+    <Compile Include="Mapping\Request\IItemReqMappingRequest.cs" />
     <Compile Include="Mapping\Response\ICategoryMappingResponse.cs" />
     <Compile Include="Mapping\Response\ICustomerMappingResponse.cs" />
     <Compile Include="Mapping\Response\IEmployeeMappingResponse.cs" />
+    <Compile Include="Mapping\Response\IItemMappingResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Implementation\CategoryRepository.cs" />
     <Compile Include="Repository\Implementation\CustomerRepository.cs" />
     <Compile Include="Repository\Implementation\EmployeeRepository.cs" />
     <Compile Include="Repository\Implementation\GenericRepository.cs" />
+    <Compile Include="Repository\Implementation\ItemRepository.cs" />
     <Compile Include="Repository\Intefaces\ICategoryRepository.cs" />
     <Compile Include="Repository\Intefaces\ICustomerRepository.cs" />
     <Compile Include="Repository\Intefaces\IEmployeeRepository.cs" />
     <Compile Include="Repository\Intefaces\IGenericRepository.cs" />
+    <Compile Include="Repository\Intefaces\IItemRepository.cs" />
     <Compile Include="Repository\UnitOfWork\UnitOfWork.cs" />
     <Compile Include="Repository\UnitOfWork\IUnitOfWork.cs" />
   </ItemGroup>
@@ -110,6 +120,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Workshop.Entities\Workshop.Entities.csproj">
+      <Project>{6E21EC4D-221D-472F-B8B1-C7C8D6F7EA9D}</Project>
+      <Name>Workshop.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Domain\WorkshopModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>WorkshopModel.edmx</DependentUpon>
@@ -121,16 +140,6 @@
       <LastGenOutput>WorkshopModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Workshop.Entities\Workshop.Entities.csproj">
-      <Project>{6E21EC4D-221D-472F-B8B1-C7C8D6F7EA9D}</Project>
-      <Name>Workshop.Entities</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -1,0 +1,47 @@
+﻿@model Workshop.UI.Models.Users.UserLogin
+@using Workshop.UI.Resources
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@SysResource.Login_ChooseBranch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="~/Content/Login/css/style.css">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="inner">
+
+            <div class="image-holder">
+                <img src="~/Content/Login/images/Untitled.png" alt="">
+            </div>
+            @using (Html.BeginForm("UserBranch", "Login", FormMethod.Post, new { @class = "action" }))
+            {
+                <h3>@SysResource.Login_ChooseBranch</h3>
+                <div class="form-holder active fontColor">
+                    <input type="text" value="@ViewBag.CompName" class="form-control fontColor" disabled="disabled">
+                </div>
+                <div class="form-holder active fontColor">
+                    @Html.DropDownListFor(c => c.LanguageId, new SelectList(ViewBag.Language, "Id", "LangName"), new { @class = "form-control fontColor" })
+                </div>
+
+                <div class="form-login">
+                    <button>@SysResource.btn_Confirm</button>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    @*<script src="js/jquery-3.3.1.min.js"></script>*@
+    @*<script src="js/main.js"></script>*@
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
