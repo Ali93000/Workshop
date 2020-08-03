@@ -15,11 +15,12 @@ namespace Workshop.Api.Filters
 {
     public class JWTAuthentication : AuthorizeAttribute, IAuthenticationFilter
     {
-        private readonly ITokenManager _tokenManager;
-        public JWTAuthentication(ITokenManager tokenManager)
-        {
-            this._tokenManager = tokenManager;
-        }
+        //private readonly ITokenManager _tokenManager;
+
+        //public JWTAuthentication(ITokenManager tokenManager)
+        //{
+        //    this._tokenManager = tokenManager;
+        //}
         public bool AllowMultiple
         {
             get { return false; }
@@ -45,6 +46,12 @@ namespace Workshop.Api.Filters
                 return;
             }
 
+            if (String.IsNullOrEmpty(authorization.Parameter))
+            {
+                context.ErrorResult = new AuthenticationFailureResult("Missing Token", request);
+                return;
+            }
+
             TokenAndUser = authorization.Parameter.Split(':');
             string Token = TokenAndUser[0];
             //string username = TokenAndUser[1];
@@ -55,14 +62,14 @@ namespace Workshop.Api.Filters
                 return;
             }
 
-            string validUserName = _tokenManager.ValidateToken(Token);
+            string validUserName = TokenManager.ValidateToken(Token);
             //if (username != validUserName)
             //{
             //    context.ErrorResult = new AuthenticationFailureResult("Invalid Token For User", request);
             //    return;
             //}
 
-            context.Principal = _tokenManager.GetPrincipal(Token);
+            context.Principal = TokenManager.GetPrincipal(Token);
         }
 
         public async Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken)

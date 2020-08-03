@@ -49,26 +49,28 @@ namespace Workshop.UI.Controllers
 
         public ActionResult UserBranch()
         {
-            BranchConsumer branchConsumer = new BranchConsumer();
-            Models.Branch.BranchesResponse branches = branchConsumer.GetAllBranches();
-            
-            ViewBag.BranchesList = branches.BranchesList;
             var userData = TempData["UserLoginData"] as UserLoginInfoResponse;
             TempData.Keep();
-            ViewBag.CompName = userData.UserLoginInfo.CompName;
+            int? compId = userData.UserLoginInfo.CompCode;
+            BranchConsumer branchConsumer = new BranchConsumer();
+            Models.Branch.BranchesResponse branches = branchConsumer.GetAllBranchesForCompany(compId);
+            ViewBag.BranchesList = branches.BranchesList;
 
+            ViewBag.CompName = userData.UserLoginInfo.CompName;
             return View();
         }
 
         [HttpPost]
         public ActionResult UserBranch(UserLogin userLogin)
         {
-            BranchConsumer branchConsumer = new BranchConsumer();
-            Models.Branch.BranchesResponse branches = branchConsumer.GetAllBranches();
-
-            ViewBag.BranchesList = branches.BranchesList;
             var userInfo = TempData["UserLoginData"] as UserLoginInfoResponse;
             TempData.Keep();
+            int? compId = userInfo.UserLoginInfo.CompCode;
+
+            BranchConsumer branchConsumer = new BranchConsumer();
+            Models.Branch.BranchesResponse branches = branchConsumer.GetAllBranchesForCompany(compId);
+            ViewBag.BranchesList = branches.BranchesList;
+
             userInfo.UserLoginInfo.BraCode = userLogin.BraCode;
             Session["UserData"] = userInfo.UserLoginInfo;
             // Call Api To Get Token

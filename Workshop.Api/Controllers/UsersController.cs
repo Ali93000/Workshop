@@ -18,12 +18,10 @@ namespace Workshop.Api.Controllers
     {
         private readonly IModelStateValidator  _modelStateValidator;
         private readonly IUserEnquiryFunc _userEnquiryFunc;
-        private readonly ITokenManager _tokenManager;
-        public UsersController(IModelStateValidator modelStateValidator, IUserEnquiryFunc userEnquiryFunc, ITokenManager tokenManager)
+        public UsersController(IModelStateValidator modelStateValidator, IUserEnquiryFunc userEnquiryFunc)
         {
             this._modelStateValidator = modelStateValidator;
             this._userEnquiryFunc = userEnquiryFunc;
-            this._tokenManager = tokenManager;
         }
 
         [HttpPost, Route("api/v1/users/login")]
@@ -44,7 +42,7 @@ namespace Workshop.Api.Controllers
         public IHttpActionResult GenerateAccessToken(UserLoginInfoResponse userLoginInfo)
         {
             var userDTO = userLoginInfo.UserLoginInfo;
-            var token = _tokenManager.GenerateToken(userDTO);
+            var token = TokenManager.GenerateToken(userDTO);
             return new WorkHttpActionResult(token, HttpStatusCode.OK);
         }
     }

@@ -10,5 +10,6 @@ namespace Workshop.BLL.Branch.Enquiry
     public interface IBranchEnquiryFunc
     {
         BranchesResponse GetAllBranches();
+        BranchesResponse GetAllBranches(int? compId);
     }
 }

@@ -49,9 +49,9 @@ namespace Workshop.Api.IOC
             Task t2 = RegisterBLL(container);
             Task t3 = RegisterValidation(container);
             Task t4 = RegisterRepositories(container);
-            Task t5 = RegisterJWT(container);
+            //Task t5 = RegisterJWT(container);
 
-            Task.WaitAll(t1, t2, t3, t4, t5);
+            Task.WaitAll(t1, t2, t3, t4);
         }
 
         
@@ -133,12 +133,12 @@ namespace Workshop.Api.IOC
             });
         }
 
-        public static async Task RegisterJWT(UnityContainer container)
-        {
-            await Task.Run(() => 
-            {
-                container.RegisterType<ITokenManager, TokenManager>();
-            });
-        }
+        //public static async Task RegisterJWT(UnityContainer container)
+        //{
+        //    await Task.Run(() => 
+        //    {
+        //        container.RegisterType<ITokenManager, TokenManager>();
+        //    });
+        //}
     }
 }

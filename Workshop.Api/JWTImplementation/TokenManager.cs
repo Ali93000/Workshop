@@ -10,12 +10,12 @@ using Workshop.Entities.DTO.User;
 
 namespace Workshop.Api.JWTImplementation
 {
-    public class TokenManager : ITokenManager
+    public class TokenManager
     {
         
-        public string Secret = "ERMN05OPLoDvbTTa/QkqLNMI7cPLguaRyHzyg7n5qNBVjQmtBhz4SzYh4NBVCXi3KJHlSXKP+oi2+bXr6CUYTR==";
+        public static string Secret = "ERMN05OPLoDvbTTa/QkqLNMI7cPLguaRyHzyg7n5qNBVjQmtBhz4SzYh4NBVCXi3KJHlSXKP+oi2+bXr6CUYTR==";
 
-        public string GenerateToken(UserDTO userLoginData)
+        public static string GenerateToken(UserDTO userLoginData)
         {
             byte[] key = Convert.FromBase64String(Secret);
             SymmetricSecurityKey securityKey = new SymmetricSecurityKey(key);
@@ -46,7 +46,7 @@ namespace Workshop.Api.JWTImplementation
             JwtSecurityToken token = handler.CreateJwtSecurityToken(descriptor);
             return handler.WriteToken(token);
         }
-        public ClaimsPrincipal GetPrincipal(string token)
+        public static ClaimsPrincipal GetPrincipal(string token)
         {
             try
             {
@@ -73,7 +73,7 @@ namespace Workshop.Api.JWTImplementation
             }
         }
 
-        public string ValidateToken(string token)
+        public static string ValidateToken(string token)
         {
             string username = null;
             ClaimsPrincipal principal = GetPrincipal(token);
@@ -102,7 +102,7 @@ namespace Workshop.Api.JWTImplementation
 
         // Read Token 
         // Must Return Privilages Class to use it in Insert
-        public UserDTO ReadToken(string jwtToken)
+        public static UserDTO ReadToken(string jwtToken)
         {
             //var jwt = Request.Headers.Authorization.Parameter;
             var handler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();

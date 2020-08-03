@@ -17,14 +17,14 @@ namespace Workshop.UI.BLL
             ApiURL = ConfigurationManager.AppSettings["ApiUrl"];
         }
 
-        public BranchesResponse GetAllBranches()
+        public BranchesResponse GetAllBranchesForCompany(int? compId)
         {
             BranchesResponse branchesResponse = new BranchesResponse();
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(ApiURL);
                 ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
-                var responseTask = client.GetAsync("branch").Result;
+                var responseTask = client.GetAsync("branchs?compId="+ compId).Result;
                 if (responseTask.IsSuccessStatusCode)
                 {
                     branchesResponse = responseTask.Content.ReadAsAsync<BranchesResponse>().Result;
@@ -34,8 +34,6 @@ namespace Workshop.UI.BLL
                 {
                     return new BranchesResponse();
                 }
-
-
             }
         }
     }

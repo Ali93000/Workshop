@@ -30,16 +30,11 @@ namespace Workshop.UI.BLL
                 //HTTP POST
                 var json = JsonConvert.SerializeObject(userLogin);
                 var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-                var responseTask = client.PostAsync("users/login", stringContent);
-                responseTask.Wait();
+                var result = client.PostAsync("users/login", stringContent).Result;
 
-                var result = responseTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    var readTask = result.Content.ReadAsAsync<UserLoginInfoResponse>();
-                    readTask.Wait();
-
-                    userLoginInfoResponse = readTask.Result;
+                    userLoginInfoResponse = result.Content.ReadAsAsync<UserLoginInfoResponse>().Result;
                     return userLoginInfoResponse;
                 }
                 else //web api sent error response 
