@@ -17,7 +17,7 @@ namespace Workshop.UI.Controllers
             compCode = _CurrentLoginModel.CompCode;
             braCode = _CurrentLoginModel.BraCode;
         }
-        public ActionResult Index()
+        public ActionResult Index() 
         {
             BranchConsumer branchConsumer = new BranchConsumer();
             Models.Branch.BranchesResponse branches = branchConsumer.GetAllBranches();
