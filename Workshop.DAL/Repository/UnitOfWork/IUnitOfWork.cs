@@ -18,5 +18,9 @@ namespace Workshop.DAL.Repository.UnitOfWork
         IItemRepository ItemRepository { get; }
         IUserRepository UserRepository { get; }
         IBranchRepository BranchRepository { get; }
+        IVendorRepository VendorRepository { get; }
+        IServicesRepository ServicesRepository { get; }
+        IReceiptVoucherReopsitry ReceiptVoucherReopsitry { get; }
+        IPaymentVoucherReopsitry paymentVoucherReopsitry { get; }
     }
 }

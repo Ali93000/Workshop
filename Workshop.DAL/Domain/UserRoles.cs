@@ -12,10 +12,10 @@ namespace Workshop.DAL.Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class UserRole
+    public partial class UserRoles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserRole()
+        public UserRoles()
         {
             this.G_USERS = new HashSet<G_USERS>();
         }

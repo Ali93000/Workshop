@@ -56,18 +56,37 @@
     <Compile Include="ApiModels\Item\Request\ItemReq.cs" />
     <Compile Include="ApiModels\Item\Response\ItemResponse.cs" />
     <Compile Include="ApiModels\Item\Response\ItemsResponse.cs" />
+    <Compile Include="ApiModels\PaymentVoucher\Request\PaymentVoucherReq.cs" />
+    <Compile Include="ApiModels\PaymentVoucher\Response\PaymentVoucherIDResponse.cs" />
+    <Compile Include="ApiModels\PaymentVoucher\Response\PaymentVoucherResponse.cs" />
+    <Compile Include="ApiModels\ReceiptVoucher\Request\ReceiptVoucherReq.cs" />
+    <Compile Include="ApiModels\ReceiptVoucher\Response\ReceiptVoucherIDResponse.cs" />
+    <Compile Include="ApiModels\ReceiptVoucher\Response\ReceiptVoucherResponse.cs" />
+    <Compile Include="ApiModels\Services\Request\ServicesReq.cs" />
+    <Compile Include="ApiModels\Services\Response\ServicesIDResponse.cs" />
+    <Compile Include="ApiModels\Services\Response\ServicesResponse.cs" />
     <Compile Include="ApiModels\User\Request\UserLoginReq.cs" />
     <Compile Include="ApiModels\User\Response\UserLoginInfoResponse.cs" />
+    <Compile Include="ApiModels\Vendor\Request\VendorReq.cs" />
+    <Compile Include="ApiModels\Vendor\Response\VendorResponse.cs" />
+    <Compile Include="ApiModels\Vendor\Response\VendorsResponse.cs" />
     <Compile Include="DTO\Branch\BranchDTO.cs" />
     <Compile Include="DTO\Category\CategoryDTO.cs" />
     <Compile Include="DTO\Customer\CustomerDTO.cs" />
     <Compile Include="DTO\Employee\EmployeeDTO.cs" />
     <Compile Include="DTO\Item\ItemDTO.cs" />
+    <Compile Include="DTO\PaymentVoucher\PaymentVoucherDTO.cs" />
+    <Compile Include="DTO\ReceiptVoucher\ReceiptVoucherDTO.cs" />
+    <Compile Include="DTO\Services\ServicesDTO.cs" />
     <Compile Include="DTO\User\UserDTO.cs" />
+    <Compile Include="DTO\Vendor\VendorDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApiModels\Branch\Request\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

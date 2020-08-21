@@ -43,6 +43,6 @@ namespace Workshop.DAL.Domain
         public virtual G_Companies G_Companies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<G_USERS_BRANCHES> G_USERS_BRANCHES { get; set; }
-        public virtual UserRole UserRole { get; set; }
+        public virtual UserRoles UserRoles { get; set; }
     }
 }

@@ -22,6 +22,10 @@ namespace Workshop.DAL.Repository.UnitOfWork
             ItemRepository = new ItemRepository(context);
             UserRepository = new UserRepository(context);
             BranchRepository = new BranchRepository(context);
+            VendorRepository = new VendorRepository(context);
+            ServicesRepository = new ServicesRepository(context);
+            ReceiptVoucherReopsitry = new ReceiptVoucherRepository(context);
+            paymentVoucherReopsitry = new PaymentVoucherReopsitry(context);
         }
 
         // 
@@ -42,5 +46,12 @@ namespace Workshop.DAL.Repository.UnitOfWork
         public IUserRepository UserRepository { get; }
 
         public IBranchRepository BranchRepository { get; }
+         public IVendorRepository VendorRepository { get; }
+
+        public IServicesRepository ServicesRepository { get; }
+
+        public IReceiptVoucherReopsitry ReceiptVoucherReopsitry { get; }
+
+        public IPaymentVoucherReopsitry paymentVoucherReopsitry { get; }
     }
 }

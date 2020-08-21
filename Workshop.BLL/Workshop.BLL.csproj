@@ -63,13 +63,28 @@
     <Compile Include="Item\Enquiry\ItemEnquiryFunc.cs" />
     <Compile Include="Item\Operational\IItemOperationalFunc.cs" />
     <Compile Include="Item\Operational\ItemOperationalFunc.cs" />
+    <Compile Include="PaymentVoucher\Enquiry\IPaymentVoucherEnquiryFunc.cs" />
+    <Compile Include="PaymentVoucher\Enquiry\PaymentVoucherEnquiryFunc.cs" />
+    <Compile Include="PaymentVoucher\Operational\IPaymentVoucherOperationalFunc.cs" />
+    <Compile Include="PaymentVoucher\Operational\PaymentVoucherOperationalFunc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReceiptVoucher\Enquiry\IReceiptVoucherEnquiryFunc.cs" />
+    <Compile Include="ReceiptVoucher\Enquiry\ReceiptVoucherEnquiryFunc.cs" />
+    <Compile Include="ReceiptVoucher\Operational\IReceiptVoucherOperationalFunc.cs" />
+    <Compile Include="ReceiptVoucher\Operational\ReceiptVoucherOperationalFunc.cs" />
+    <Compile Include="Services\Enquiry\IServicesEnquiryFunc.cs" />
+    <Compile Include="Services\Enquiry\ServicesEnquiryFunc.cs" />
+    <Compile Include="Services\Operational\IServicesOperationalFunc.cs" />
+    <Compile Include="Services\Operational\ServicesOperationalFunc.cs" />
     <Compile Include="User\Enquiry\IUserEnquiryFunc.cs" />
     <Compile Include="User\Enquiry\UserEnquiryFunc.cs" />
     <Compile Include="User\Operational\IUserOperationalFunc.cs" />
     <Compile Include="User\Operational\UserOperationalFunc.cs" />
+    <Compile Include="Vendor\Enquiry\IVendorEnquiryFunc.cs" />
+    <Compile Include="Vendor\Enquiry\VendorEnquiryFunc.cs" />
+    <Compile Include="Vendor\Operational\IVendorOperationalFunc.cs" />
+    <Compile Include="Vendor\Operational\VendorOperationalFunc.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Workshop.DAL\Workshop.DAL.csproj">
       <Project>{FC15E945-F724-4E35-B6DF-30EAE079F4E5}</Project>
@@ -79,6 +94,9 @@
       <Project>{6E21EC4D-221D-472F-B8B1-C7C8D6F7EA9D}</Project>
       <Name>Workshop.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
