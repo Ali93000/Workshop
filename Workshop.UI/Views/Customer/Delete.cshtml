@@ -1,0 +1,44 @@
+﻿@model Workshop.Entities.DTO.CustomerDTO
+@using Workshop.UI.Resources
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_myLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="m-portlet">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text" style="color: #157c6a;font-size: 1.9rem;">
+                            @SysResource.Btn_Delete
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="m-portlet__body">
+                <h3> @SysResource.ConfirmDelete  @Model.CustomerNameAr؟</h3>
+
+                <div>
+                    @*<dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </dt>
+
+                        </dl>*@
+                    @Html.HiddenFor(m => m.Id)
+                    @using (Html.BeginForm("Delete", "Customer"))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="@SysResource.Btn_Delete" class="btn btn-danger" /> |
+                            @Html.ActionLink(SysResource.BackToHome, "Index")
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+﻿@model Workshop.Entities.DTO.CustomerDTO
+@using Workshop.UI.Resources
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_myLayout.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "Customer", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="m-portlet">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text" style="color: #157c6a;font-size: 1.9rem;">
+                                @SysResource.CustomerData
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <label style="font-size:15px">@SysResource.CustomerName </label>
+                            @Html.TextBoxFor(model => model.CustomerNameAr, "", new { @class = "form-control", @style = "width:260px; margin-right:16px" })
+                            @Html.ValidationMessage("NameValidation", new { @style = "color:red" })
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size:15px">@SysResource.CustomerName </label>
+                            @Html.TextBoxFor(model => model.CustomerNameEn, "", new { @class = "form-control", @style = "width:260px; margin-right:16px" })
+                            @Html.ValidationMessage("NameEnValidation", new { @style = "color:red" })
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size:15px">@SysResource.Address</label>
+                            @Html.TextBoxFor(model => model.CustomerAddress, "", new { @class = "form-control", @style = "width:260px; margin-right:16px" })
+                            @Html.ValidationMessage("AddressValidation", new { @style = "color:red" })
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size:15px">@SysResource.Email</label>
+                            @Html.TextBoxFor(model => model.CustomerEmail, "", new { @class = "form-control", @style = "width:260px; margin-right:16px" })
+                            @Html.ValidationMessage("EmailValidation", new { @style = "color:red" })
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size:15px">@SysResource.Mobil</label>
+                            @Html.TextBoxFor(model => model.Mobil1, "", new { @class = "form-control", @style = "width:260px; margin-right:16px" })
+                            @Html.ValidationMessage("Mobil1Validation", new { @style = "color:red" })
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size:15px">@SysResource.Phone</label>
+                            @Html.TextBoxFor(model => model.Mobil2, "", new { @class = "form-control", @style = "width:260px; margin-right:16px" })
+                            @Html.ValidationMessage("PhoneValidation", new { @style = "color:red" })
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size:15px">@SysResource.Remarks</label>
+                            @Html.TextBoxFor(model => model.Remarks, "", new { @class = "form-control", @style = "width:260px; margin-right:16px" })
+                            @Html.ValidationMessage("RemarksValidation", new { @style = "color:red" })
+                        </div>
+                        <div class="form-group">
+                            <label class="m-checkbox" style="margin-right:18px">
+                                @Html.CheckBoxFor(model => model.IsActive) &nbsp; فــــــــعـــــــال
+                                <span></span>
+                            </label>
+                        </div>
+                        @Html.HiddenFor(model => model.Id)
+                        <br /><br />
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="@SysResource.Btn_Edit" class="btn" style="background-color:#157C6A;color:white; font-size:15px;" />
+                            </div>
+                        </div>
+                        <div>
+                            @Html.ActionLink(SysResource.BackToHome, "Index", null, new { @style = "color:black;font-size:18px;text-decoration:underline;margin-right:17px;" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+
+<script>
+    $(document).ready(function () {
+        $("#systemId").select2();
+        $("#UserRole").select2();
+    })
+</script>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

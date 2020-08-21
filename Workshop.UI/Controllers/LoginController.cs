@@ -9,7 +9,7 @@ using Workshop.UI.Models.Users;
 
 namespace Workshop.UI.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
         // GET: Login
         public ActionResult Index()
@@ -73,6 +73,8 @@ namespace Workshop.UI.Controllers
 
             userInfo.UserLoginInfo.BraCode = userLogin.BraCode;
             Session["UserData"] = userInfo.UserLoginInfo;
+            Session["CurrentLoginModel"] = userInfo.UserLoginInfo;
+            _CurrentLoginModel = userInfo.UserLoginInfo;
             // Call Api To Get Token
             var accessToken = TokenConsumer.GetAccessToken(userInfo);
             Session["token"] = accessToken;
