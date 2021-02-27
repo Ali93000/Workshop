@@ -8,5 +8,5 @@ namespace Workshop.Api.Mapping.Request
 {
     public class BranchReqMappingRequest : IBranchReqMappingRequest
     {
-    }
+    } 
 }
