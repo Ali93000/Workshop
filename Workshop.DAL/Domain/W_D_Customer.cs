@@ -14,6 +14,12 @@ namespace Workshop.DAL.Domain
     
     public partial class W_D_Customer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public W_D_Customer()
+        {
+            this.W_T_ReceiptVoucher = new HashSet<W_T_ReceiptVoucher>();
+        }
+    
         public int Id { get; set; }
         public string CustomerCode { get; set; }
         public string CustomerNameAr { get; set; }
@@ -29,5 +35,8 @@ namespace Workshop.DAL.Domain
         public Nullable<System.DateTime> UpdatedAt { get; set; }
         public Nullable<int> CompCode { get; set; }
         public Nullable<int> BranchCode { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<W_T_ReceiptVoucher> W_T_ReceiptVoucher { get; set; }
     }
 }

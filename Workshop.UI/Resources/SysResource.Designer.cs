@@ -61,7 +61,16 @@ namespace Workshop.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to الموافقة على الاحكام والشروط.
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I agree all statement in Terms &amp; Conditions.
         /// </summary>
         public static string agreestate {
             get {
@@ -70,7 +79,25 @@ namespace Workshop.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to تأكيد.
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string BackToHome {
+            get {
+                return ResourceManager.GetString("BackToHome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch Name.
+        /// </summary>
+        public static string BranchName {
+            get {
+                return ResourceManager.GetString("BranchName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
         /// </summary>
         public static string btn_Confirm {
             get {
@@ -79,7 +106,34 @@ namespace Workshop.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to تسجيل الدخول.
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string Btn_Delete {
+            get {
+                return ResourceManager.GetString("Btn_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string Btn_Details {
+            get {
+                return ResourceManager.GetString("Btn_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Btn_Edit {
+            get {
+                return ResourceManager.GetString("Btn_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string btn_Login {
             get {
@@ -88,7 +142,115 @@ namespace Workshop.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to اللغة.
+        ///   Looks up a localized string similar to Company Name.
+        /// </summary>
+        public static string CompanyName {
+            get {
+                return ResourceManager.GetString("CompanyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are You sure to Delete.
+        /// </summary>
+        public static string ConfirmDelete {
+            get {
+                return ResourceManager.GetString("ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string Create {
+            get {
+                return ResourceManager.GetString("Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Date.
+        /// </summary>
+        public static string CreateAt {
+            get {
+                return ResourceManager.GetString("CreateAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created By.
+        /// </summary>
+        public static string CreatedBy {
+            get {
+                return ResourceManager.GetString("CreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Code.
+        /// </summary>
+        public static string CustomerCode {
+            get {
+                return ResourceManager.GetString("CustomerCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Customer.
+        /// </summary>
+        public static string CustomerCreate {
+            get {
+                return ResourceManager.GetString("CustomerCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Data.
+        /// </summary>
+        public static string CustomerData {
+            get {
+                return ResourceManager.GetString("CustomerData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Detais.
+        /// </summary>
+        public static string CustomerDetais {
+            get {
+                return ResourceManager.GetString("CustomerDetais", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customers List.
+        /// </summary>
+        public static string CustomerList {
+            get {
+                return ResourceManager.GetString("CustomerList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Name.
+        /// </summary>
+        public static string CustomerName {
+            get {
+                return ResourceManager.GetString("CustomerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email Address.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
             get {
@@ -97,7 +259,7 @@ namespace Workshop.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to إختار الفرع.
+        ///   Looks up a localized string similar to Choose Branch.
         /// </summary>
         public static string Login_ChooseBranch {
             get {
@@ -106,7 +268,7 @@ namespace Workshop.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to تسجيل الدخول الى النظام.
+        ///   Looks up a localized string similar to Login To System.
         /// </summary>
         public static string Login_logintosystem {
             get {
@@ -115,7 +277,7 @@ namespace Workshop.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to تسجيل الدخول.
+        ///   Looks up a localized string similar to RegistrationForm.
         /// </summary>
         public static string Login_RegistrationForm {
             get {
@@ -124,7 +286,7 @@ namespace Workshop.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to خطأ فى اسم المستخدم أو كلمة المرور.
+        ///   Looks up a localized string similar to Invalid Username or Password.
         /// </summary>
         public static string LoginFailed {
             get {
@@ -133,7 +295,43 @@ namespace Workshop.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to كلمة السر.
+        ///   Looks up a localized string similar to Customers.
+        /// </summary>
+        public static string Menu_Customers {
+            get {
+                return ResourceManager.GetString("Menu_Customers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Main.
+        /// </summary>
+        public static string Menu_Main {
+            get {
+                return ResourceManager.GetString("Menu_Main", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customers List.
+        /// </summary>
+        public static string MenuSub_Customers {
+            get {
+                return ResourceManager.GetString("MenuSub_Customers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobil.
+        /// </summary>
+        public static string Mobil {
+            get {
+                return ResourceManager.GetString("Mobil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
             get {
@@ -142,7 +340,25 @@ namespace Workshop.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to اسم المستخدم.
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remarks.
+        /// </summary>
+        public static string Remarks {
+            get {
+                return ResourceManager.GetString("Remarks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string Username {
             get {

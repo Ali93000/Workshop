@@ -18,9 +18,9 @@ namespace Workshop.DAL.Domain
         public WorkshopDBEntities()
             : base("name=WorkshopDBEntities")
         {
-            var inSureDBIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+            var x = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -30,12 +30,15 @@ namespace Workshop.DAL.Domain
         public virtual DbSet<G_Companies> G_Companies { get; set; }
         public virtual DbSet<G_USERS> G_USERS { get; set; }
         public virtual DbSet<G_USERS_BRANCHES> G_USERS_BRANCHES { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<UserRole> UserRoles { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<UserRoles> UserRoles { get; set; }
         public virtual DbSet<W_D_Category> W_D_Category { get; set; }
         public virtual DbSet<W_D_Customer> W_D_Customer { get; set; }
         public virtual DbSet<W_D_Employee> W_D_Employee { get; set; }
         public virtual DbSet<W_D_Items> W_D_Items { get; set; }
+        public virtual DbSet<W_D_Services> W_D_Services { get; set; }
         public virtual DbSet<W_D_Vendor> W_D_Vendor { get; set; }
+        public virtual DbSet<W_T_PaymentVoucher> W_T_PaymentVoucher { get; set; }
+        public virtual DbSet<W_T_ReceiptVoucher> W_T_ReceiptVoucher { get; set; }
     }
 }

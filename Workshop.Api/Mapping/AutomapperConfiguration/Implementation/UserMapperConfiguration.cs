@@ -21,7 +21,7 @@ namespace Workshop.Api.Mapping.AutomapperConfiguration.Implementation
 
                 cfg.CreateMap<G_USERS, UserDTO>()
                 .ForMember(des => des.RoleName, map => 
-                map.MapFrom(src => src.UserRole.RoleNameEn))
+                map.MapFrom(src => src.UserRoles.RoleNameEn))
                 .ForMember(des=> des.CompName, map =>
                 map.MapFrom(src =>src.G_Companies.NameEn));
 

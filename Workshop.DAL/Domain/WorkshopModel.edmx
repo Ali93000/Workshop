@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="WorkshopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="WorkshopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="G_Branches">
           <Key>
             <PropertyRef Name="BraCode" />
@@ -178,6 +178,26 @@
           <Property Name="UpdatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="W_D_Services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodeServices" Type="nvarchar" MaxLength="50" />
+          <Property Name="DescriptionServicesA&#xD;&#xA;DescriptionServicesA&#xD;&#xA;DescriptionServicesA" Type="nvarchar" MaxLength="150" />
+          <Property Name="DescriptionServicesE" Type="nvarchar" MaxLength="150" />
+          <Property Name="ServicesPrice" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="LowestSellingPrice" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="VatType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="150" />
+          <Property Name="CreateAt&#xD;&#xA;CreateAt" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateAt" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyCode" Type="int" />
+          <Property Name="BranchCode" Type="int" />
+        </EntityType>
         <EntityType Name="W_D_Vendor">
           <Key>
             <PropertyRef Name="Id" />
@@ -199,6 +219,47 @@
           <Property Name="UpdatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="CompCode" Type="int" />
+          <Property Name="BranchCode" Type="int" />
+        </EntityType>
+        <EntityType Name="W_T_PaymentVoucher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrCode" Type="int" />
+          <Property Name="TrDate" Type="date" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="150" />
+          <Property Name="PaimentTotal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="250" />
+          <Property Name="Cach" Type="bit" />
+          <Property Name="BankCheck" Type="bit" />
+          <Property Name="BankNetwork" Type="bit" />
+          <Property Name="BankAccount" Type="nvarchar" MaxLength="50" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateAt" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateAt" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyCode" Type="int" />
+          <Property Name="BranchCode" Type="int" />
+        </EntityType>
+        <EntityType Name="W_T_ReceiptVoucher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrCode" Type="int" />
+          <Property Name="TrDate" Type="date" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="Receipt_Total" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Amount_Paid" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Remaining_Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="150" />
+          <Property Name="CreateAt" Type="datetime" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateAt" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyCode" Type="int" />
           <Property Name="BranchCode" Type="int" />
         </EntityType>
         <Association Name="FK_G_Branches_G_Companies">
@@ -309,6 +370,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_W_T_CachReceipt_W_D_Customer">
+          <End Role="W_D_Customer" Type="Self.W_D_Customer" Multiplicity="0..1" />
+          <End Role="W_T_ReceiptVoucher" Type="Self.W_T_ReceiptVoucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="W_D_Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="W_T_ReceiptVoucher">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="WorkshopDBModelStoreContainer">
           <EntitySet Name="G_Branches" EntityType="Self.G_Branches" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="G_Companies" EntityType="Self.G_Companies" Schema="dbo" store:Type="Tables" />
@@ -320,7 +393,10 @@
           <EntitySet Name="W_D_Customer" EntityType="Self.W_D_Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="W_D_Employee" EntityType="Self.W_D_Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="W_D_Items" EntityType="Self.W_D_Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="W_D_Services" EntityType="Self.W_D_Services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="W_D_Vendor" EntityType="Self.W_D_Vendor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="W_T_PaymentVoucher" EntityType="Self.W_T_PaymentVoucher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="W_T_ReceiptVoucher" EntityType="Self.W_T_ReceiptVoucher" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_G_Branches_G_Companies" Association="Self.FK_G_Branches_G_Companies">
             <End Role="G_Companies" EntitySet="G_Companies" />
             <End Role="G_Branches" EntitySet="G_Branches" />
@@ -353,56 +429,16 @@
             <End Role="W_D_Vendor" EntitySet="W_D_Vendor" />
             <End Role="W_D_Items" EntitySet="W_D_Items" />
           </AssociationSet>
+          <AssociationSet Name="FK_W_T_CachReceipt_W_D_Customer" Association="Self.FK_W_T_CachReceipt_W_D_Customer">
+            <End Role="W_D_Customer" EntitySet="W_D_Customer" />
+            <End Role="W_T_ReceiptVoucher" EntitySet="W_T_ReceiptVoucher" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WorkshopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="G_Branches" EntityType="WorkshopDBModel.G_Branches" />
-          <EntitySet Name="G_Companies" EntityType="WorkshopDBModel.G_Companies" />
-          <EntitySet Name="G_USERS" EntityType="WorkshopDBModel.G_USERS" />
-          <EntitySet Name="G_USERS_BRANCHES" EntityType="WorkshopDBModel.G_USERS_BRANCHES" />
-          <EntitySet Name="sysdiagrams" EntityType="WorkshopDBModel.sysdiagram" />
-          <EntitySet Name="UserRoles" EntityType="WorkshopDBModel.UserRole" />
-          <EntitySet Name="W_D_Category" EntityType="WorkshopDBModel.W_D_Category" />
-          <EntitySet Name="W_D_Customer" EntityType="WorkshopDBModel.W_D_Customer" />
-          <EntitySet Name="W_D_Employee" EntityType="WorkshopDBModel.W_D_Employee" />
-          <EntitySet Name="W_D_Items" EntityType="WorkshopDBModel.W_D_Items" />
-          <EntitySet Name="W_D_Vendor" EntityType="WorkshopDBModel.W_D_Vendor" />
-          <AssociationSet Name="FK_G_Branches_G_Companies" Association="WorkshopDBModel.FK_G_Branches_G_Companies">
-            <End Role="G_Companies" EntitySet="G_Companies" />
-            <End Role="G_Branches" EntitySet="G_Branches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_G_USERS_BRANCHES_G_Branches" Association="WorkshopDBModel.FK_G_USERS_BRANCHES_G_Branches">
-            <End Role="G_Branches" EntitySet="G_Branches" />
-            <End Role="G_USERS_BRANCHES" EntitySet="G_USERS_BRANCHES" />
-          </AssociationSet>
-          <AssociationSet Name="FK_G_USERS_BRANCHES_G_Companies" Association="WorkshopDBModel.FK_G_USERS_BRANCHES_G_Companies">
-            <End Role="G_Companies" EntitySet="G_Companies" />
-            <End Role="G_USERS_BRANCHES" EntitySet="G_USERS_BRANCHES" />
-          </AssociationSet>
-          <AssociationSet Name="FK_G_USERS_G_Companies" Association="WorkshopDBModel.FK_G_USERS_G_Companies">
-            <End Role="G_Companies" EntitySet="G_Companies" />
-            <End Role="G_USERS" EntitySet="G_USERS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_G_USERS_BRANCHES_G_USERS1" Association="WorkshopDBModel.FK_G_USERS_BRANCHES_G_USERS1">
-            <End Role="G_USERS" EntitySet="G_USERS" />
-            <End Role="G_USERS_BRANCHES" EntitySet="G_USERS_BRANCHES" />
-          </AssociationSet>
-          <AssociationSet Name="FK_G_USERS_UserRoles1" Association="WorkshopDBModel.FK_G_USERS_UserRoles1">
-            <End Role="UserRole" EntitySet="UserRoles" />
-            <End Role="G_USERS" EntitySet="G_USERS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_W_D_Items_W_D_Category" Association="WorkshopDBModel.FK_W_D_Items_W_D_Category">
-            <End Role="W_D_Category" EntitySet="W_D_Category" />
-            <End Role="W_D_Items" EntitySet="W_D_Items" />
-          </AssociationSet>
-          <AssociationSet Name="FK_W_D_Items_W_D_Vendor" Association="WorkshopDBModel.FK_W_D_Items_W_D_Vendor">
-            <End Role="W_D_Vendor" EntitySet="W_D_Vendor" />
-            <End Role="W_D_Items" EntitySet="W_D_Items" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="G_Branches">
           <Key>
             <PropertyRef Name="BraCode" />
@@ -423,8 +459,8 @@
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="G_Companies" Relationship="WorkshopDBModel.FK_G_Branches_G_Companies" FromRole="G_Branches" ToRole="G_Companies" />
-          <NavigationProperty Name="G_USERS_BRANCHES" Relationship="WorkshopDBModel.FK_G_USERS_BRANCHES_G_Branches" FromRole="G_Branches" ToRole="G_USERS_BRANCHES" />
+          <NavigationProperty Name="G_Companies" Relationship="Self.FK_G_Branches_G_Companies" FromRole="G_Branches" ToRole="G_Companies" />
+          <NavigationProperty Name="G_USERS_BRANCHES" Relationship="Self.FK_G_USERS_BRANCHES_G_Branches" FromRole="G_Branches" ToRole="G_USERS_BRANCHES" />
         </EntityType>
         <EntityType Name="G_Companies">
           <Key>
@@ -445,9 +481,9 @@
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="G_Branches" Relationship="WorkshopDBModel.FK_G_Branches_G_Companies" FromRole="G_Companies" ToRole="G_Branches" />
-          <NavigationProperty Name="G_USERS_BRANCHES" Relationship="WorkshopDBModel.FK_G_USERS_BRANCHES_G_Companies" FromRole="G_Companies" ToRole="G_USERS_BRANCHES" />
-          <NavigationProperty Name="G_USERS" Relationship="WorkshopDBModel.FK_G_USERS_G_Companies" FromRole="G_Companies" ToRole="G_USERS" />
+          <NavigationProperty Name="G_Branches" Relationship="Self.FK_G_Branches_G_Companies" FromRole="G_Companies" ToRole="G_Branches" />
+          <NavigationProperty Name="G_USERS_BRANCHES" Relationship="Self.FK_G_USERS_BRANCHES_G_Companies" FromRole="G_Companies" ToRole="G_USERS_BRANCHES" />
+          <NavigationProperty Name="G_USERS" Relationship="Self.FK_G_USERS_G_Companies" FromRole="G_Companies" ToRole="G_USERS" />
         </EntityType>
         <EntityType Name="G_USERS">
           <Key>
@@ -472,9 +508,9 @@
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="G_Companies" Relationship="WorkshopDBModel.FK_G_USERS_G_Companies" FromRole="G_USERS" ToRole="G_Companies" />
-          <NavigationProperty Name="G_USERS_BRANCHES" Relationship="WorkshopDBModel.FK_G_USERS_BRANCHES_G_USERS1" FromRole="G_USERS" ToRole="G_USERS_BRANCHES" />
-          <NavigationProperty Name="UserRole" Relationship="WorkshopDBModel.FK_G_USERS_UserRoles1" FromRole="G_USERS" ToRole="UserRole" />
+          <NavigationProperty Name="G_Companies" Relationship="Self.FK_G_USERS_G_Companies" FromRole="G_USERS" ToRole="G_Companies" />
+          <NavigationProperty Name="G_USERS_BRANCHES" Relationship="Self.FK_G_USERS_BRANCHES_G_USERS1" FromRole="G_USERS" ToRole="G_USERS_BRANCHES" />
+          <NavigationProperty Name="UserRoles" Relationship="Self.FK_G_USERS_UserRoles1" FromRole="G_USERS" ToRole="UserRoles" />
         </EntityType>
         <EntityType Name="G_USERS_BRANCHES">
           <Key>
@@ -489,21 +525,21 @@
           <Property Name="Edit" Type="Boolean" />
           <Property Name="Delete" Type="Boolean" />
           <Property Name="View" Type="Boolean" />
-          <NavigationProperty Name="G_Branches" Relationship="WorkshopDBModel.FK_G_USERS_BRANCHES_G_Branches" FromRole="G_USERS_BRANCHES" ToRole="G_Branches" />
-          <NavigationProperty Name="G_Companies" Relationship="WorkshopDBModel.FK_G_USERS_BRANCHES_G_Companies" FromRole="G_USERS_BRANCHES" ToRole="G_Companies" />
-          <NavigationProperty Name="G_USERS" Relationship="WorkshopDBModel.FK_G_USERS_BRANCHES_G_USERS1" FromRole="G_USERS_BRANCHES" ToRole="G_USERS" />
+          <NavigationProperty Name="G_Branches" Relationship="Self.FK_G_USERS_BRANCHES_G_Branches" FromRole="G_USERS_BRANCHES" ToRole="G_Branches" />
+          <NavigationProperty Name="G_Companies" Relationship="Self.FK_G_USERS_BRANCHES_G_Companies" FromRole="G_USERS_BRANCHES" ToRole="G_Companies" />
+          <NavigationProperty Name="G_USERS" Relationship="Self.FK_G_USERS_BRANCHES_G_USERS1" FromRole="G_USERS_BRANCHES" ToRole="G_USERS" />
         </EntityType>
-        <EntityType Name="sysdiagram">
+        <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="UserRole">
+        <EntityType Name="UserRoles">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -511,7 +547,7 @@
           <Property Name="RoleNameAr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="RoleNameEn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="G_USERS" Relationship="WorkshopDBModel.FK_G_USERS_UserRoles1" FromRole="UserRole" ToRole="G_USERS" />
+          <NavigationProperty Name="G_USERS" Relationship="Self.FK_G_USERS_UserRoles1" FromRole="UserRoles" ToRole="G_USERS" />
         </EntityType>
         <EntityType Name="W_D_Category">
           <Key>
@@ -521,7 +557,7 @@
           <Property Name="CategoryNameAr" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="CategoryNameEn" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="W_D_Items" Relationship="WorkshopDBModel.FK_W_D_Items_W_D_Category" FromRole="W_D_Category" ToRole="W_D_Items" />
+          <NavigationProperty Name="W_D_Items" Relationship="Self.FK_W_D_Items_W_D_Category" FromRole="W_D_Category" ToRole="W_D_Items" />
         </EntityType>
         <EntityType Name="W_D_Customer">
           <Key>
@@ -542,6 +578,7 @@
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
           <Property Name="CompCode" Type="Int32" />
           <Property Name="BranchCode" Type="Int32" />
+          <NavigationProperty Name="W_T_ReceiptVoucher" Relationship="Self.FK_W_T_CachReceipt_W_D_Customer" FromRole="W_D_Customer" ToRole="W_T_ReceiptVoucher" />
         </EntityType>
         <EntityType Name="W_D_Employee">
           <Key>
@@ -588,8 +625,28 @@
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="W_D_Category" Relationship="WorkshopDBModel.FK_W_D_Items_W_D_Category" FromRole="W_D_Items" ToRole="W_D_Category" />
-          <NavigationProperty Name="W_D_Vendor" Relationship="WorkshopDBModel.FK_W_D_Items_W_D_Vendor" FromRole="W_D_Items" ToRole="W_D_Vendor" />
+          <NavigationProperty Name="W_D_Category" Relationship="Self.FK_W_D_Items_W_D_Category" FromRole="W_D_Items" ToRole="W_D_Category" />
+          <NavigationProperty Name="W_D_Vendor" Relationship="Self.FK_W_D_Items_W_D_Vendor" FromRole="W_D_Items" ToRole="W_D_Vendor" />
+        </EntityType>
+        <EntityType Name="W_D_Services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodeServices" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionServicesA__DescriptionServicesA__DescriptionServicesA" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionServicesE" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ServicesPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LowestSellingPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VatType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="Remark" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CreateAt__CreateAt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateAt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="BranchCode" Type="Int32" />
         </EntityType>
         <EntityType Name="W_D_Vendor">
           <Key>
@@ -613,13 +670,55 @@
           <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CompCode" Type="Int32" />
           <Property Name="BranchCode" Type="Int32" />
-          <NavigationProperty Name="W_D_Items" Relationship="WorkshopDBModel.FK_W_D_Items_W_D_Vendor" FromRole="W_D_Vendor" ToRole="W_D_Items" />
+          <NavigationProperty Name="W_D_Items" Relationship="Self.FK_W_D_Items_W_D_Vendor" FromRole="W_D_Vendor" ToRole="W_D_Items" />
+        </EntityType>
+        <EntityType Name="W_T_PaymentVoucher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrCode" Type="Int32" />
+          <Property Name="TrDate" Type="DateTime" Precision="0" />
+          <Property Name="Customer" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PaimentTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Cach" Type="Boolean" />
+          <Property Name="BankCheck" Type="Boolean" />
+          <Property Name="BankNetwork" Type="Boolean" />
+          <Property Name="BankAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateAt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateAt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="BranchCode" Type="Int32" />
+        </EntityType>
+        <EntityType Name="W_T_ReceiptVoucher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrCode" Type="Int32" />
+          <Property Name="TrDate" Type="DateTime" Precision="0" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="Receipt_Total" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Amount_Paid" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Remaining_Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Remark" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CreateAt" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyCode" Type="Int32" />
+          <Property Name="BranchCode" Type="Int32" />
+          <NavigationProperty Name="W_D_Customer" Relationship="Self.FK_W_T_CachReceipt_W_D_Customer" FromRole="W_T_ReceiptVoucher" ToRole="W_D_Customer" />
         </EntityType>
         <Association Name="FK_G_Branches_G_Companies">
-          <End Type="WorkshopDBModel.G_Companies" Role="G_Companies" Multiplicity="0..1">
+          <End Role="G_Companies" Type="Self.G_Companies" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="WorkshopDBModel.G_Branches" Role="G_Branches" Multiplicity="*" />
+          <End Role="G_Branches" Type="Self.G_Branches" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="G_Companies">
               <PropertyRef Name="CompCode" />
@@ -630,8 +729,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_G_USERS_BRANCHES_G_Branches">
-          <End Type="WorkshopDBModel.G_Branches" Role="G_Branches" Multiplicity="0..1" />
-          <End Type="WorkshopDBModel.G_USERS_BRANCHES" Role="G_USERS_BRANCHES" Multiplicity="*" />
+          <End Role="G_Branches" Type="Self.G_Branches" Multiplicity="0..1" />
+          <End Role="G_USERS_BRANCHES" Type="Self.G_USERS_BRANCHES" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="G_Branches">
               <PropertyRef Name="BraCode" />
@@ -642,8 +741,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_G_USERS_BRANCHES_G_Companies">
-          <End Type="WorkshopDBModel.G_Companies" Role="G_Companies" Multiplicity="0..1" />
-          <End Type="WorkshopDBModel.G_USERS_BRANCHES" Role="G_USERS_BRANCHES" Multiplicity="*" />
+          <End Role="G_Companies" Type="Self.G_Companies" Multiplicity="0..1" />
+          <End Role="G_USERS_BRANCHES" Type="Self.G_USERS_BRANCHES" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="G_Companies">
               <PropertyRef Name="CompCode" />
@@ -654,10 +753,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_G_USERS_G_Companies">
-          <End Type="WorkshopDBModel.G_Companies" Role="G_Companies" Multiplicity="0..1">
+          <End Role="G_Companies" Type="Self.G_Companies" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="WorkshopDBModel.G_USERS" Role="G_USERS" Multiplicity="*" />
+          <End Role="G_USERS" Type="Self.G_USERS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="G_Companies">
               <PropertyRef Name="CompCode" />
@@ -668,10 +767,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_G_USERS_BRANCHES_G_USERS1">
-          <End Type="WorkshopDBModel.G_USERS" Role="G_USERS" Multiplicity="0..1">
+          <End Role="G_USERS" Type="Self.G_USERS" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="WorkshopDBModel.G_USERS_BRANCHES" Role="G_USERS_BRANCHES" Multiplicity="*" />
+          <End Role="G_USERS_BRANCHES" Type="Self.G_USERS_BRANCHES" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="G_USERS">
               <PropertyRef Name="Id" />
@@ -682,12 +781,12 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_G_USERS_UserRoles1">
-          <End Type="WorkshopDBModel.UserRole" Role="UserRole" Multiplicity="0..1">
+          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="WorkshopDBModel.G_USERS" Role="G_USERS" Multiplicity="*" />
+          <End Role="G_USERS" Type="Self.G_USERS" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserRole">
+            <Principal Role="UserRoles">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="G_USERS">
@@ -696,10 +795,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_W_D_Items_W_D_Category">
-          <End Type="WorkshopDBModel.W_D_Category" Role="W_D_Category" Multiplicity="0..1">
+          <End Role="W_D_Category" Type="Self.W_D_Category" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="WorkshopDBModel.W_D_Items" Role="W_D_Items" Multiplicity="*" />
+          <End Role="W_D_Items" Type="Self.W_D_Items" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="W_D_Category">
               <PropertyRef Name="Id" />
@@ -709,11 +808,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_W_T_CachReceipt_W_D_Customer">
+          <End Role="W_D_Customer" Type="Self.W_D_Customer" Multiplicity="0..1" />
+          <End Role="W_T_ReceiptVoucher" Type="Self.W_T_ReceiptVoucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="W_D_Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="W_T_ReceiptVoucher">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_W_D_Items_W_D_Vendor">
-          <End Type="WorkshopDBModel.W_D_Vendor" Role="W_D_Vendor" Multiplicity="0..1">
+          <End Role="W_D_Vendor" Type="Self.W_D_Vendor" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="WorkshopDBModel.W_D_Items" Role="W_D_Items" Multiplicity="*" />
+          <End Role="W_D_Items" Type="Self.W_D_Items" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="W_D_Vendor">
               <PropertyRef Name="Id" />
@@ -723,7 +834,59 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="G_Branches" EntityType="Self.G_Branches" />
+          <EntitySet Name="G_Companies" EntityType="Self.G_Companies" />
+          <EntitySet Name="G_USERS" EntityType="Self.G_USERS" />
+          <EntitySet Name="G_USERS_BRANCHES" EntityType="Self.G_USERS_BRANCHES" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRoles" />
+          <EntitySet Name="W_D_Category" EntityType="Self.W_D_Category" />
+          <EntitySet Name="W_D_Customer" EntityType="Self.W_D_Customer" />
+          <EntitySet Name="W_D_Employee" EntityType="Self.W_D_Employee" />
+          <EntitySet Name="W_D_Items" EntityType="Self.W_D_Items" />
+          <EntitySet Name="W_D_Services" EntityType="Self.W_D_Services" />
+          <EntitySet Name="W_D_Vendor" EntityType="Self.W_D_Vendor" />
+          <EntitySet Name="W_T_PaymentVoucher" EntityType="Self.W_T_PaymentVoucher" />
+          <EntitySet Name="W_T_ReceiptVoucher" EntityType="Self.W_T_ReceiptVoucher" />
+          <AssociationSet Name="FK_G_Branches_G_Companies" Association="Self.FK_G_Branches_G_Companies">
+            <End Role="G_Companies" EntitySet="G_Companies" />
+            <End Role="G_Branches" EntitySet="G_Branches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_G_USERS_BRANCHES_G_Branches" Association="Self.FK_G_USERS_BRANCHES_G_Branches">
+            <End Role="G_Branches" EntitySet="G_Branches" />
+            <End Role="G_USERS_BRANCHES" EntitySet="G_USERS_BRANCHES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_G_USERS_BRANCHES_G_Companies" Association="Self.FK_G_USERS_BRANCHES_G_Companies">
+            <End Role="G_Companies" EntitySet="G_Companies" />
+            <End Role="G_USERS_BRANCHES" EntitySet="G_USERS_BRANCHES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_G_USERS_G_Companies" Association="Self.FK_G_USERS_G_Companies">
+            <End Role="G_Companies" EntitySet="G_Companies" />
+            <End Role="G_USERS" EntitySet="G_USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_G_USERS_BRANCHES_G_USERS1" Association="Self.FK_G_USERS_BRANCHES_G_USERS1">
+            <End Role="G_USERS" EntitySet="G_USERS" />
+            <End Role="G_USERS_BRANCHES" EntitySet="G_USERS_BRANCHES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_G_USERS_UserRoles1" Association="Self.FK_G_USERS_UserRoles1">
+            <End Role="UserRoles" EntitySet="UserRoles" />
+            <End Role="G_USERS" EntitySet="G_USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_W_D_Items_W_D_Category" Association="Self.FK_W_D_Items_W_D_Category">
+            <End Role="W_D_Category" EntitySet="W_D_Category" />
+            <End Role="W_D_Items" EntitySet="W_D_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_W_T_CachReceipt_W_D_Customer" Association="Self.FK_W_T_CachReceipt_W_D_Customer">
+            <End Role="W_D_Customer" EntitySet="W_D_Customer" />
+            <End Role="W_T_ReceiptVoucher" EntitySet="W_T_ReceiptVoucher" />
+          </AssociationSet>
+          <AssociationSet Name="FK_W_D_Items_W_D_Vendor" Association="Self.FK_W_D_Items_W_D_Vendor">
+            <End Role="W_D_Vendor" EntitySet="W_D_Vendor" />
+            <End Role="W_D_Items" EntitySet="W_D_Items" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -732,207 +895,271 @@
           <EntitySetMapping Name="G_Branches">
             <EntityTypeMapping TypeName="WorkshopDBModel.G_Branches">
               <MappingFragment StoreEntitySet="G_Branches">
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="BranchManager" ColumnName="BranchManager" />
-                <ScalarProperty Name="BraEmail" ColumnName="BraEmail" />
-                <ScalarProperty Name="BraFax" ColumnName="BraFax" />
-                <ScalarProperty Name="BraTel2" ColumnName="BraTel2" />
-                <ScalarProperty Name="BraTel" ColumnName="BraTel" />
-                <ScalarProperty Name="BraAddress" ColumnName="BraAddress" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="BraDesEn" ColumnName="BraDesEn" />
-                <ScalarProperty Name="BraDesAr" ColumnName="BraDesAr" />
                 <ScalarProperty Name="BraCode" ColumnName="BraCode" />
+                <ScalarProperty Name="BraDesAr" ColumnName="BraDesAr" />
+                <ScalarProperty Name="BraDesEn" ColumnName="BraDesEn" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="BraAddress" ColumnName="BraAddress" />
+                <ScalarProperty Name="BraTel" ColumnName="BraTel" />
+                <ScalarProperty Name="BraTel2" ColumnName="BraTel2" />
+                <ScalarProperty Name="BraFax" ColumnName="BraFax" />
+                <ScalarProperty Name="BraEmail" ColumnName="BraEmail" />
+                <ScalarProperty Name="BranchManager" ColumnName="BranchManager" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="G_Companies">
             <EntityTypeMapping TypeName="WorkshopDBModel.G_Companies">
               <MappingFragment StoreEntitySet="G_Companies">
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="GMName" ColumnName="GMName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="Tel2" ColumnName="Tel2" />
-                <ScalarProperty Name="Tel1" ColumnName="Tel1" />
-                <ScalarProperty Name="CompAddress" ColumnName="CompAddress" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
-                <ScalarProperty Name="NameAr" ColumnName="NameAr" />
                 <ScalarProperty Name="CompCode" ColumnName="CompCode" />
+                <ScalarProperty Name="NameAr" ColumnName="NameAr" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CompAddress" ColumnName="CompAddress" />
+                <ScalarProperty Name="Tel1" ColumnName="Tel1" />
+                <ScalarProperty Name="Tel2" ColumnName="Tel2" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="GMName" ColumnName="GMName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="G_USERS">
             <EntityTypeMapping TypeName="WorkshopDBModel.G_USERS">
               <MappingFragment StoreEntitySet="G_USERS">
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsManager" ColumnName="IsManager" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
-                <ScalarProperty Name="UserMobile" ColumnName="UserMobile" />
-                <ScalarProperty Name="UserTel1" ColumnName="UserTel1" />
-                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
-                <ScalarProperty Name="UserCity" ColumnName="UserCity" />
-                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserCity" ColumnName="UserCity" />
+                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+                <ScalarProperty Name="UserTel1" ColumnName="UserTel1" />
+                <ScalarProperty Name="UserMobile" ColumnName="UserMobile" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="IsManager" ColumnName="IsManager" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="G_USERS_BRANCHES">
             <EntityTypeMapping TypeName="WorkshopDBModel.G_USERS_BRANCHES">
               <MappingFragment StoreEntitySet="G_USERS_BRANCHES">
-                <ScalarProperty Name="View" ColumnName="View" />
-                <ScalarProperty Name="Delete" ColumnName="Delete" />
-                <ScalarProperty Name="Edit" ColumnName="Edit" />
-                <ScalarProperty Name="Create" ColumnName="Create" />
-                <ScalarProperty Name="Execute" ColumnName="Execute" />
-                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
-                <ScalarProperty Name="BraCode" ColumnName="BraCode" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BraCode" ColumnName="BraCode" />
+                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
+                <ScalarProperty Name="Execute" ColumnName="Execute" />
+                <ScalarProperty Name="Create" ColumnName="Create" />
+                <ScalarProperty Name="Edit" ColumnName="Edit" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
+                <ScalarProperty Name="View" ColumnName="View" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="WorkshopDBModel.sysdiagram">
+            <EntityTypeMapping TypeName="WorkshopDBModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserRoles">
-            <EntityTypeMapping TypeName="WorkshopDBModel.UserRole">
+            <EntityTypeMapping TypeName="WorkshopDBModel.UserRoles">
               <MappingFragment StoreEntitySet="UserRoles">
-                <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="RoleNameEn" ColumnName="RoleNameEn" />
-                <ScalarProperty Name="RoleNameAr" ColumnName="RoleNameAr" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoleNameAr" ColumnName="RoleNameAr" />
+                <ScalarProperty Name="RoleNameEn" ColumnName="RoleNameEn" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="W_D_Category">
             <EntityTypeMapping TypeName="WorkshopDBModel.W_D_Category">
               <MappingFragment StoreEntitySet="W_D_Category">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CategoryNameEn" ColumnName="CategoryNameEn" />
-                <ScalarProperty Name="CategoryNameAr" ColumnName="CategoryNameAr" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CategoryNameAr" ColumnName="CategoryNameAr" />
+                <ScalarProperty Name="CategoryNameEn" ColumnName="CategoryNameEn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="W_D_Customer">
             <EntityTypeMapping TypeName="WorkshopDBModel.W_D_Customer">
               <MappingFragment StoreEntitySet="W_D_Customer">
-                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
-                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
-                <ScalarProperty Name="Mobil2" ColumnName="Mobil2" />
-                <ScalarProperty Name="Mobil1" ColumnName="Mobil1" />
-                <ScalarProperty Name="CustomerNameEn" ColumnName="CustomerNameEn" />
-                <ScalarProperty Name="CustomerNameAr" ColumnName="CustomerNameAr" />
-                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="CustomerNameAr" ColumnName="CustomerNameAr" />
+                <ScalarProperty Name="CustomerNameEn" ColumnName="CustomerNameEn" />
+                <ScalarProperty Name="Mobil1" ColumnName="Mobil1" />
+                <ScalarProperty Name="Mobil2" ColumnName="Mobil2" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="W_D_Employee">
             <EntityTypeMapping TypeName="WorkshopDBModel.W_D_Employee">
               <MappingFragment StoreEntitySet="W_D_Employee">
-                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
-                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="EmpSpecialist" ColumnName="EmpSpecialist" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Mobile2" ColumnName="Mobile2" />
-                <ScalarProperty Name="Mobile1" ColumnName="Mobile1" />
-                <ScalarProperty Name="EmpNameEn" ColumnName="EmpNameEn" />
-                <ScalarProperty Name="EmpNameAr" ColumnName="EmpNameAr" />
-                <ScalarProperty Name="EmpCode" ColumnName="EmpCode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmpCode" ColumnName="EmpCode" />
+                <ScalarProperty Name="EmpNameAr" ColumnName="EmpNameAr" />
+                <ScalarProperty Name="EmpNameEn" ColumnName="EmpNameEn" />
+                <ScalarProperty Name="Mobile1" ColumnName="Mobile1" />
+                <ScalarProperty Name="Mobile2" ColumnName="Mobile2" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EmpSpecialist" ColumnName="EmpSpecialist" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="W_D_Items">
             <EntityTypeMapping TypeName="WorkshopDBModel.W_D_Items">
               <MappingFragment StoreEntitySet="W_D_Items">
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
-                <ScalarProperty Name="BraCode" ColumnName="BraCode" />
-                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
-                <ScalarProperty Name="MadeInCountry" ColumnName="MadeInCountry" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="ItemImage" ColumnName="ItemImage" />
-                <ScalarProperty Name="PurchDate" ColumnName="PurchDate" />
-                <ScalarProperty Name="LowestSellingPrice" ColumnName="LowestSellingPrice" />
-                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
-                <ScalarProperty Name="ItemPurchPrice" ColumnName="ItemPurchPrice" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ItemDescEn" ColumnName="ItemDescEn" />
-                <ScalarProperty Name="ItemDescAr" ColumnName="ItemDescAr" />
-                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemDescAr" ColumnName="ItemDescAr" />
+                <ScalarProperty Name="ItemDescEn" ColumnName="ItemDescEn" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ItemPurchPrice" ColumnName="ItemPurchPrice" />
+                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+                <ScalarProperty Name="LowestSellingPrice" ColumnName="LowestSellingPrice" />
+                <ScalarProperty Name="PurchDate" ColumnName="PurchDate" />
+                <ScalarProperty Name="ItemImage" ColumnName="ItemImage" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="MadeInCountry" ColumnName="MadeInCountry" />
+                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
+                <ScalarProperty Name="BraCode" ColumnName="BraCode" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="W_D_Services">
+            <EntityTypeMapping TypeName="WorkshopDBModel.W_D_Services">
+              <MappingFragment StoreEntitySet="W_D_Services">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CodeServices" ColumnName="CodeServices" />
+                <ScalarProperty Name="DescriptionServicesA__DescriptionServicesA__DescriptionServicesA" ColumnName="DescriptionServicesA&#xD;&#xA;DescriptionServicesA&#xD;&#xA;DescriptionServicesA" />
+                <ScalarProperty Name="DescriptionServicesE" ColumnName="DescriptionServicesE" />
+                <ScalarProperty Name="ServicesPrice" ColumnName="ServicesPrice" />
+                <ScalarProperty Name="LowestSellingPrice" ColumnName="LowestSellingPrice" />
+                <ScalarProperty Name="VatType" ColumnName="VatType" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CreateAt__CreateAt" ColumnName="CreateAt&#xD;&#xA;CreateAt" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="W_D_Vendor">
             <EntityTypeMapping TypeName="WorkshopDBModel.W_D_Vendor">
               <MappingFragment StoreEntitySet="W_D_Vendor">
-                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
-                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="VendorAddress" ColumnName="VendorAddress" />
-                <ScalarProperty Name="VatType" ColumnName="VatType" />
-                <ScalarProperty Name="VatNo" ColumnName="VatNo" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Mobile2" ColumnName="Mobile2" />
-                <ScalarProperty Name="Mobile1" ColumnName="Mobile1" />
-                <ScalarProperty Name="ResponsibleName" ColumnName="ResponsibleName" />
-                <ScalarProperty Name="VerndorNameEn" ColumnName="VerndorNameEn" />
-                <ScalarProperty Name="VerndorNameAr" ColumnName="VerndorNameAr" />
-                <ScalarProperty Name="VendorCode" ColumnName="VendorCode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="VendorCode" ColumnName="VendorCode" />
+                <ScalarProperty Name="VerndorNameAr" ColumnName="VerndorNameAr" />
+                <ScalarProperty Name="VerndorNameEn" ColumnName="VerndorNameEn" />
+                <ScalarProperty Name="ResponsibleName" ColumnName="ResponsibleName" />
+                <ScalarProperty Name="Mobile1" ColumnName="Mobile1" />
+                <ScalarProperty Name="Mobile2" ColumnName="Mobile2" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="VatNo" ColumnName="VatNo" />
+                <ScalarProperty Name="VatType" ColumnName="VatType" />
+                <ScalarProperty Name="VendorAddress" ColumnName="VendorAddress" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CompCode" ColumnName="CompCode" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="W_T_PaymentVoucher">
+            <EntityTypeMapping TypeName="WorkshopDBModel.W_T_PaymentVoucher">
+              <MappingFragment StoreEntitySet="W_T_PaymentVoucher">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TrCode" ColumnName="TrCode" />
+                <ScalarProperty Name="TrDate" ColumnName="TrDate" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="PaimentTotal" ColumnName="PaimentTotal" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Cach" ColumnName="Cach" />
+                <ScalarProperty Name="BankCheck" ColumnName="BankCheck" />
+                <ScalarProperty Name="BankNetwork" ColumnName="BankNetwork" />
+                <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="W_T_ReceiptVoucher">
+            <EntityTypeMapping TypeName="WorkshopDBModel.W_T_ReceiptVoucher">
+              <MappingFragment StoreEntitySet="W_T_ReceiptVoucher">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TrCode" ColumnName="TrCode" />
+                <ScalarProperty Name="TrDate" ColumnName="TrDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Receipt_Total" ColumnName="Receipt_Total" />
+                <ScalarProperty Name="Amount_Paid" ColumnName="Amount_Paid" />
+                <ScalarProperty Name="Remaining_Amount" ColumnName="Remaining_Amount" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -950,7 +1177,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

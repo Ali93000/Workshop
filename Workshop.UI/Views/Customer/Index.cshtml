@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Workshop.Entities.DTO.CustomerDTO>
+@using Workshop.UI.Resources
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_myLayout.cshtml";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+<div class="row">
+    <div class="col-xl-12">
+        <div class="m-portlet">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text" style="color: #157c6a;font-size: 1.9rem;">
+                            @SysResource.MenuSub_Customers
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="m-portlet__body" style="overflow-y:scroll;height:419px">
+
+                <table class="table table-striped- table-bordered table-hover table-checkable" id="myTable">
+                    <thead class="thead-light">
+                        <tr>
+                            <th style="text-align:center;background-color:#ccc">
+                                <label for="Id">@SysResource.CustomerCode</label>
+                            </th>
+                            <th style="text-align:center;background-color:#ccc">
+                                <label for="Decription">@SysResource.CustomerName</label>
+                            </th>                     
+                            <th style="text-align:center;background-color:#ccc">
+                                <label for="Decription">@SysResource.CustomerName</label>
+                            </th>
+                            <th style="text-align:center;background-color:#ccc">
+                                <label for="TemplateText">@SysResource.Mobil</label>
+                            </th>
+                            <th @*class="no-sort"*@ style="text-align:center;background-color:#ccc;width:240px!important">
+                                @SysResource.Btn_Details
+                            </th>
+
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerNameAr)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerNameEn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Mobil1)
+                            </td>
+                            @Html.HiddenFor(modelItem => item.Id)
+                            <td>
+                                @Html.ActionLink(SysResource.Btn_Details, "Details", new { Id = item.Id}, new { @class = "btn m-btn--pill    btn-info", @style = "Color:white" })
+                                @Html.ActionLink(SysResource.Btn_Edit, "Edit", new { Id = item.Id}, new { @class = "btn m-btn--pill    btn-success", @style = "Color:white" })
+                                @Html.ActionLink(SysResource.Btn_Delete, "Delete", new { Id = item.Id}, new { @class = "btn m-btn--pill    btn-danger", @style = "Color:white" })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+        $("input[type='search']").css({
+            'width': '788px',
+            'border': '1px solid black'
+        });
+
+        $("div.dataTables_wrapper div.dataTables_length label").css({
+            "margin-left": "404px",
+            "margin-top": "11px"
+        });
+
+        $("div.dataTables_wrapper div.dataTables_filter label").css({
+            "margin-right": "-364px"
+        });
+        $("#myTable_previous").removeClass("disabled");
+    })
+</script>

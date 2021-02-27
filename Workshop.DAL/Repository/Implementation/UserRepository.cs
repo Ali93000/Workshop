@@ -20,7 +20,7 @@ namespace Workshop.DAL.Repository.Implementation
 
         public G_USERS UserLoginData(Expression<Func<G_USERS, bool>> predicate)
         {
-            return _context.Set<G_USERS>().Include(u => u.UserRole).FirstOrDefault(predicate);
+            return _context.Set<G_USERS>().Include(u => u.UserRoles).FirstOrDefault(predicate);
         }
     }
 }

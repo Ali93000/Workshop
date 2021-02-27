@@ -65,10 +65,10 @@
     <Compile Include="Domain\G_USERS_BRANCHES.cs">
       <DependentUpon>WorkshopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Domain\sysdiagram.cs">
+    <Compile Include="Domain\sysdiagrams.cs">
       <DependentUpon>WorkshopModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Domain\UserRole.cs">
+    <Compile Include="Domain\UserRoles.cs">
       <DependentUpon>WorkshopModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Domain\WorkshopModel.Context.cs">
@@ -98,7 +98,16 @@
     <Compile Include="Domain\W_D_Items.cs">
       <DependentUpon>WorkshopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Domain\W_D_Services.cs">
+      <DependentUpon>WorkshopModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain\W_D_Vendor.cs">
+      <DependentUpon>WorkshopModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\W_T_PaymentVoucher.cs">
+      <DependentUpon>WorkshopModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\W_T_ReceiptVoucher.cs">
       <DependentUpon>WorkshopModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Mapping\Request\IBranchReqMappingRequest.cs" />
@@ -106,13 +115,21 @@
     <Compile Include="Mapping\Request\ICustomerReqMappingRequest.cs" />
     <Compile Include="Mapping\Request\IEmployeeReqMappingRequest.cs" />
     <Compile Include="Mapping\Request\IItemReqMappingRequest.cs" />
+    <Compile Include="Mapping\Request\IPaymentVoucherRequest.cs" />
+    <Compile Include="Mapping\Request\IReceiptVoucherMappingRequest.cs" />
+    <Compile Include="Mapping\Request\IServicesReqMappingRequest.cs" />
     <Compile Include="Mapping\Request\IUserReqMappingRequest.cs" />
+    <Compile Include="Mapping\Request\IVendorReqMappingRequest.cs" />
     <Compile Include="Mapping\Response\IBranchMappingResponse.cs" />
     <Compile Include="Mapping\Response\ICategoryMappingResponse.cs" />
     <Compile Include="Mapping\Response\ICustomerMappingResponse.cs" />
     <Compile Include="Mapping\Response\IEmployeeMappingResponse.cs" />
     <Compile Include="Mapping\Response\IItemMappingResponse.cs" />
+    <Compile Include="Mapping\Response\IPaymentVoucherMappingResponse.cs" />
+    <Compile Include="Mapping\Response\IReceiptVoucherMappingResponse.cs" />
+    <Compile Include="Mapping\Response\IServicesrMappingResponse.cs" />
     <Compile Include="Mapping\Response\IUserMappingResponse.cs" />
+    <Compile Include="Mapping\Response\IVendorMappingResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Implementation\BranchRepository.cs" />
     <Compile Include="Repository\Implementation\CategoryRepository.cs" />
@@ -120,14 +137,22 @@
     <Compile Include="Repository\Implementation\EmployeeRepository.cs" />
     <Compile Include="Repository\Implementation\GenericRepository.cs" />
     <Compile Include="Repository\Implementation\ItemRepository.cs" />
+    <Compile Include="Repository\Implementation\PaymentVoucherReopsitry.cs" />
+    <Compile Include="Repository\Implementation\ReceiptVoucherRepository.cs" />
+    <Compile Include="Repository\Implementation\ServicesRepository.cs" />
     <Compile Include="Repository\Implementation\UserRepository.cs" />
+    <Compile Include="Repository\Implementation\VendorRepository.cs" />
     <Compile Include="Repository\Intefaces\IBranchRepository.cs" />
     <Compile Include="Repository\Intefaces\ICategoryRepository.cs" />
     <Compile Include="Repository\Intefaces\ICustomerRepository.cs" />
     <Compile Include="Repository\Intefaces\IEmployeeRepository.cs" />
     <Compile Include="Repository\Intefaces\IGenericRepository.cs" />
     <Compile Include="Repository\Intefaces\IItemRepository.cs" />
+    <Compile Include="Repository\Intefaces\IPaymentVoucherReopsitry.cs" />
+    <Compile Include="Repository\Intefaces\IReceiptVoucherReopsitry.cs" />
+    <Compile Include="Repository\Intefaces\IServicesRepository.cs" />
     <Compile Include="Repository\Intefaces\IUserRepository.cs" />
+    <Compile Include="Repository\Intefaces\IVendorRepository.cs" />
     <Compile Include="Repository\UnitOfWork\UnitOfWork.cs" />
     <Compile Include="Repository\UnitOfWork\IUnitOfWork.cs" />
   </ItemGroup>
@@ -151,6 +176,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Domain\WorkshopModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

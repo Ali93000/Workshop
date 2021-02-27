@@ -117,34 +117,106 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
   <data name="agreestate" xml:space="preserve">
-    <value>الموافقة على الاحكام والشروط</value>
+    <value>I agree all statement in Terms &amp; Conditions</value>
+  </data>
+  <data name="BackToHome" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="BranchName" xml:space="preserve">
+    <value>Branch Name</value>
   </data>
   <data name="btn_Confirm" xml:space="preserve">
-    <value>تأكيد</value>
+    <value>Confirm</value>
+  </data>
+  <data name="Btn_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Btn_Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Btn_Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="btn_Login" xml:space="preserve">
-    <value>تسجيل الدخول</value>
+    <value>Login</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Company Name</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Are You sure to Delete</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="CreateAt" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="CustomerCode" xml:space="preserve">
+    <value>Customer Code</value>
+  </data>
+  <data name="CustomerCreate" xml:space="preserve">
+    <value>Create Customer</value>
+  </data>
+  <data name="CustomerData" xml:space="preserve">
+    <value>Customer Data</value>
+  </data>
+  <data name="CustomerDetais" xml:space="preserve">
+    <value>Customer Detais</value>
+  </data>
+  <data name="CustomerList" xml:space="preserve">
+    <value>Customers List</value>
+  </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>Customer Name</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email Address</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>اللغة</value>
+    <value>Language</value>
   </data>
   <data name="LoginFailed" xml:space="preserve">
-    <value>خطأ فى اسم المستخدم أو كلمة المرور</value>
+    <value>Invalid Username or Password</value>
   </data>
   <data name="Login_ChooseBranch" xml:space="preserve">
-    <value>إختار الفرع</value>
+    <value>Choose Branch</value>
   </data>
   <data name="Login_logintosystem" xml:space="preserve">
-    <value>تسجيل الدخول الى النظام</value>
+    <value>Login To System</value>
   </data>
   <data name="Login_RegistrationForm" xml:space="preserve">
-    <value>تسجيل الدخول</value>
+    <value>RegistrationForm</value>
+  </data>
+  <data name="MenuSub_Customers" xml:space="preserve">
+    <value>Customers List</value>
+  </data>
+  <data name="Menu_Customers" xml:space="preserve">
+    <value>Customers</value>
+  </data>
+  <data name="Menu_Main" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="Mobil" xml:space="preserve">
+    <value>Mobil</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>كلمة السر</value>
+    <value>Password</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Remarks</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>اسم المستخدم</value>
+    <value>Username</value>
   </data>
 </root>
